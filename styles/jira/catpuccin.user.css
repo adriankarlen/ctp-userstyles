@@ -1,0 +1,1336 @@
+/* ==UserStyle==
+@name Jira Catppuccin
+@namespace github.com/catppuccin/userstyles/styles/jira
+@homepageURL https://github.com/catppuccin/userstyles/tree/main/styles/jira
+@version 0.0.1
+@updateURL https://github.com/catppuccin/userstyles/raw/main/styles/jira/catppuccin.user.css
+@description Soothing pastel theme for Jira
+@author Catppuccin
+@license MIT
+
+@preprocessor   less
+@var select lightFlavor "Light Flavor" ["latte:Latte*", "frappe:Frappé", "macchiato:Macchiato", "mocha:Mocha"]
+@var select darkFlavor "Dark Flavor" ["latte:Latte", "frappe:Frappé", "macchiato:Macchiato", "mocha:Mocha*"]
+==/UserStyle== */
+@-moz-document url-prefix("https://jira") {
+  @catppuccin: {
+    @latte: {
+      @rosewater: #dc8a78;
+      @flamingo: #dd7878;
+      @pink: #ea76cb;
+      @mauve: #8839ef;
+      @red: #d20f39;
+      @maroon: #e64553;
+      @peach: #fe640b;
+      @yellow: #df8e1d;
+      @green: #40a02b;
+      @teal: #179299;
+      @sky: #04a5e5;
+      @sapphire: #209fb5;
+      @blue: #1e66f5;
+      @lavender: #7287fd;
+      @text: #4c4f69;
+      @subtext1: #5c5f77;
+      @subtext0: #6c6f85;
+      @overlay2: #7c7f93;
+      @overlay1: #8c8fa1;
+      @overlay0: #9ca0b0;
+      @surface2: #acb0be;
+      @surface1: #bcc0cc;
+      @surface0: #ccd0da;
+      @base: #eff1f5;
+      @mantle: #e6e9ef;
+      @crust: #dce0e8;
+    }
+
+    ;
+
+    @frappe: {
+      @rosewater: #f2d5cf;
+      @flamingo: #eebebe;
+      @pink: #f4b8e4;
+      @mauve: #ca9ee6;
+      @red: #e78284;
+      @maroon: #ea999c;
+      @peach: #ef9f76;
+      @yellow: #e5c890;
+      @green: #a6d189;
+      @teal: #81c8be;
+      @sky: #99d1db;
+      @sapphire: #85c1dc;
+      @blue: #8caaee;
+      @lavender: #babbf1;
+      @text: #c6d0f5;
+      @subtext1: #b5bfe2;
+      @subtext0: #a5adce;
+      @overlay2: #949cbb;
+      @overlay1: #838ba7;
+      @overlay0: #737994;
+      @surface2: #626880;
+      @surface1: #51576d;
+      @surface0: #414559;
+      @base: #303446;
+      @mantle: #292c3c;
+      @crust: #232634;
+    }
+
+    ;
+
+    @macchiato: {
+      @rosewater: #f4dbd6;
+      @flamingo: #f0c6c6;
+      @pink: #f5bde6;
+      @mauve: #c6a0f6;
+      @red: #ed8796;
+      @maroon: #ee99a0;
+      @peach: #f5a97f;
+      @yellow: #eed49f;
+      @green: #a6da95;
+      @teal: #8bd5ca;
+      @sky: #91d7e3;
+      @sapphire: #7dc4e4;
+      @blue: #8aadf4;
+      @lavender: #b7bdf8;
+      @text: #cad3f5;
+      @subtext1: #b8c0e0;
+      @subtext0: #a5adcb;
+      @overlay2: #939ab7;
+      @overlay1: #8087a2;
+      @overlay0: #6e738d;
+      @surface2: #5b6078;
+      @surface1: #494d64;
+      @surface0: #363a4f;
+      @base: #24273a;
+      @mantle: #1e2030;
+      @crust: #181926;
+    }
+
+    ;
+
+    @mocha: {
+      @rosewater: #f5e0dc;
+      @flamingo: #f2cdcd;
+      @pink: #f5c2e7;
+      @mauve: #cba6f7;
+      @red: #f38ba8;
+      @maroon: #eba0ac;
+      @peach: #fab387;
+      @yellow: #f9e2af;
+      @green: #a6e3a1;
+      @teal: #94e2d5;
+      @sky: #89dceb;
+      @sapphire: #74c7ec;
+      @blue: #89b4fa;
+      @lavender: #b4befe;
+      @text: #cdd6f4;
+      @subtext1: #bac2de;
+      @subtext0: #a6adc8;
+      @overlay2: #9399b2;
+      @overlay1: #7f849c;
+      @overlay0: #6c7086;
+      @surface2: #585b70;
+      @surface1: #45475a;
+      @surface0: #313244;
+      @base: #1e1e2e;
+      @mantle: #181825;
+      @crust: #11111b;
+    }
+
+    ;
+  }
+
+  ;
+
+  #catppuccin(@lookup) {
+    @rosewater: @catppuccin[@@lookup][@rosewater];
+    @flamingo: @catppuccin[@@lookup][@flamingo];
+    @pink: @catppuccin[@@lookup][@pink];
+    @mauve: @catppuccin[@@lookup][@mauve];
+    @red: @catppuccin[@@lookup][@red];
+    @maroon: @catppuccin[@@lookup][@maroon];
+    @peach: @catppuccin[@@lookup][@peach];
+    @yellow: @catppuccin[@@lookup][@yellow];
+    @green: @catppuccin[@@lookup][@green];
+    @teal: @catppuccin[@@lookup][@teal];
+    @sky: @catppuccin[@@lookup][@sky];
+    @sapphire: @catppuccin[@@lookup][@sapphire];
+    @blue: @catppuccin[@@lookup][@blue];
+    @lavender: @catppuccin[@@lookup][@lavender];
+    @text: @catppuccin[@@lookup][@text];
+    @subtext1: @catppuccin[@@lookup][@subtext1];
+    @subtext0: @catppuccin[@@lookup][@subtext0];
+    @overlay2: @catppuccin[@@lookup][@overlay2];
+    @overlay1: @catppuccin[@@lookup][@overlay1];
+    @overlay0: @catppuccin[@@lookup][@overlay0];
+    @surface2: @catppuccin[@@lookup][@surface2];
+    @surface1: @catppuccin[@@lookup][@surface1];
+    @surface0: @catppuccin[@@lookup][@surface0];
+    @base: @catppuccin[@@lookup][@base];
+    @mantle: @catppuccin[@@lookup][@mantle];
+    @crust: @catppuccin[@@lookup][@crust];
+  }
+
+  @media (prefers-color-scheme: light) {
+    .no-theme {
+      #catppuccin(@lightFlavor);
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .no-theme {
+      #catppuccin(@darkFlavor);
+    }
+  }
+
+  html,
+  body {
+    background-color: @base !important;
+    font-family: "Inter", "sans-serif";
+  }
+
+  a:not(.type-gh-epic-link > a) {
+    color: @blue !important;
+  }
+
+  input {
+    background: @surface0 !important;
+    color: @text !important;
+  }
+
+  em {
+    color: @subtext1 !important;
+  }
+
+  textarea {
+    background: @surface0 !important;
+    color: @text !important;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: @subtext1 !important;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: @crust !important;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: @crust !important;
+  }
+
+  ::selection {
+    background: @overlay0 !important;
+  }
+
+  ::-moz-selection {
+    background: @overlay0 !important;
+  }
+
+  .aui-sidebar-body {
+    background: @crust !important;
+  }
+
+  .aui-sidebar[aria-expanded="false"] .aui-sidebar-group:focus,
+  .aui-sidebar-submenu[aria-expanded="false"] .aui-sidebar-group:focus,
+  .aui-sidebar[aria-expanded="false"] .aui-sidebar-group:hover,
+  .aui-sidebar-submenu[aria-expanded="false"] .aui-sidebar-group:hover,
+  .aui-sidebar[aria-expanded="false"] .aui-sidebar-group.active,
+  .aui-sidebar-submenu[aria-expanded="false"] .aui-sidebar-group.active {
+    background: transparent !important;
+  }
+
+  .action-description {
+    color: @subtext1 !important;
+  }
+
+  .issue-drop-zone__button {
+    color: @blue !important;
+  }
+
+  form.aui div.description {
+    color: @subtext1 !important;
+  }
+
+  .jira-dialog .dialog-menu-group .dialog-menu-item.selected {
+    color: @overlay1 !important;
+  }
+
+  .jira-dialog .dialog-menu-group .dialog-menu-item {
+    color: @blue !important;
+  }
+
+  .aui-select2-container.select2-container .select2-choice,
+  .aui-select2-container.select2-container a.select2-choice,
+  .aui-select2-container.select2-container .select2-choice:visited {
+    background: @base !important;
+    color: @text !important;
+    text-shadow: none !important;
+    border-color: @crust !important;
+  }
+
+  .ct-toolbar {
+    background: @base !important;
+  }
+
+  .jira-multi-select>.representation .value-item {
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+    background: @base !important;
+    color: @blue !important;
+  }
+
+  .editable-field .overlay-icon {
+    background: @surface0 !important;
+  }
+
+  .ghx-column-headers .ghx-release.ghx-disabled {
+    color: @overlay1 !important;
+  }
+
+  .ghx-controls-filters dd a {
+    color: @text !important;
+  }
+
+  .ghx-controls-filters dd a.ghx-active,
+  .ghx-controls-filters dd .js-quickfilter-button.ghx-active {
+    background: @blue !important;
+    color: @crust !important;
+  }
+
+  .ghx-controls-filters dd a.ghx-active {
+    color: @text !important;
+    background: @surface0 !important;
+  }
+
+  .ghx-classification-item {
+    background-color: @base !important;
+  }
+
+  .ghx-classification-item:hover,
+  .ghx-classification-item.ghx-selected {
+    background-color: @surface1 !important;
+  }
+
+  .ghx-classification-item>.ghx-inner {
+    border: none;
+  }
+
+  .ghx-ide-menu>li:hover {
+    background-color: @surface1 !important;
+  }
+
+  .ghx-classification-column,
+  #ghx-backlog-column {
+    border-color: @crust !important;
+  }
+
+  #dashboard,
+  .gadget .dashboard-item-content {
+    background-color: @base !important;
+    border-color: @base !important;
+  }
+
+  .dashboard-content,
+  .aui-page-header {
+    background-color: @crust !important;
+  }
+
+  #footer-logo {
+    background-color: @base !important;
+  }
+
+  #issue-content {
+    background-color: @base !important;
+  }
+
+  #issuetable,
+  .issue-table,
+  #issuetable>thead .active,
+  .issue-table>thead .active,
+  #issuetable>tbody>tr,
+  .issue-table>tbody>tr,
+  #issuetable>tfoot>tr,
+  .issue-table>tfoot>tr,
+  .issuerow {
+    background-color: @base !important;
+  }
+
+  .issue-table>thead>tr>th,
+  .issue-table>tbody>tr>td {
+    border-bottom: none !important;
+  }
+
+  .results-panel.navigator-item {
+    background: @base !important;
+  }
+
+  .rowHeader th {
+    border-top: 1px solid @crust;
+  }
+
+  .rowHeader th:hover {
+    background: @surface0 !important;
+  }
+
+  .activity-item-description .user-content {
+    color: @subtext1 !important;
+  }
+
+  .activity-item-description blockquote {
+    background-color: @surface0 !important;
+    color: @surface2 !important;
+  }
+
+  .aui-item {
+    color: @text !important;
+  }
+
+  .ajs-layer {
+    background-color: @surface0 !important;
+  }
+
+  .applinks-auth-request {
+    background-color: @surface0 !important;
+  }
+
+  .aui-badge {
+    background-color: @blue !important;
+    color: @text !important;
+  }
+
+  .ghx-sprint-info .ghx-linked-pages-trigger {
+    padding: 4px 10px !important;
+  }
+
+  .aui-button.aui-button-primary {
+    background-color: @blue !important;
+    color: @crust !important;
+  }
+
+  .aui-button-primary:focus,
+  .aui-button-primary:hover {
+    background-color: @sky !important;
+  }
+
+  .aui-button.ghx-dropdown-trigger:after,
+  .aui-buttons .aui-button.aui-button-primary.ghx-dropdown-trigger:after {
+    border-top-color: @text !important;
+  }
+
+  .aui-dropdown2.aui-style-default {
+    background: @base !important;
+  }
+
+  .aui-dropdown2.aui-style-default:hover .aui-dropdown2-checkbox,
+  .aui-dropdown2.aui-style-default:hover .aui-dropdown2-radio,
+  .aui-dropdown2.aui-style-default:hover a {
+    background: @base;
+  }
+
+  .aui-header .aui-dropdown2-trigger {
+    background-color: @base !important;
+    color: @text !important;
+  }
+
+  .aui-dropdown2.aui-style-default>strong,
+  .aui-dropdown2.aui-style-default .aui-dropdown2-section>strong,
+  .aui-dropdown2-heading {
+    color: @text !important;
+  }
+
+  .aui-sidebar[aria-expanded="false"] .aui-sidebar-group.aui-sidebar-group-actions:hover:after,
+  .aui-sidebar-submenu[aria-expanded="false"] .aui-sidebar-group.aui-sidebar-group-actions:hover:after,
+  .aui-sidebar[aria-expanded="false"] .aui-sidebar-group.aui-sidebar-group-actions:focus:after,
+  .aui-sidebar-submenu[aria-expanded="false"] .aui-sidebar-group.aui-sidebar-group-actions:focus:after,
+  .aui-sidebar[aria-expanded="false"] .aui-sidebar-group.aui-sidebar-group-actions.active:after,
+  .aui-sidebar-submenu[aria-expanded="false"] .aui-sidebar-group.aui-sidebar-group-actions.active:after {
+    background-color: @base !important;
+    border-color: @text !important;
+  }
+
+  .aui-header,
+  .aui-sidebar,
+  .aui-sidebar-wrapper {
+    background-color: @base !important;
+    color: @subtext1 !important;
+  }
+
+  .aui-icon-small:before,
+  .aui-icon-large:before {
+    color: @text !important;
+  }
+
+  .aui-label {
+    /*color: @text !important;*/
+    border: none !important;
+  }
+
+  .aui-dropdown2.aui-style-default [role="menuitem"],
+  .aui-dropdown2.aui-style-default [role="menuitemcheckbox"],
+  .aui-dropdown2.aui-style-default [role="menuitemradio"],
+  .aui-dropdown2.aui-style-default [role="radio"],
+  .aui-dropdown2.aui-style-default [role="checkbox"],
+  .aui-dropdown2.aui-style-default a {
+    color: @text !important;
+  }
+
+  .aui-dropdown2.aui-style-default:hover .aui-dropdown2-checkbox:not(.aui-dropdown2-disabled):hover,
+  .aui-dropdown2.aui-style-default:hover .aui-dropdown2-radio:not(.aui-dropdown2-disabled):hover,
+  .aui-dropdown2.aui-style-default:hover a:not(.aui-dropdown2-disabled):hover {
+    text-decoration: underline !important;
+    color: @text !important;
+  }
+
+  .aui-lozenge-current.aui-lozenge-subtle {
+    border-color: @yellow !important;
+    color: @yellow !important;
+  }
+
+  .aui-lozenge.aui-lozenge-subtle {
+    background-color: @surface0 !important;
+  }
+
+  .aui-lozenge.jira-issue-status-lozenge-blue-gray {
+    background-color: transparent !important;
+    border-color: @blue !important;
+    color: @blue !important;
+  }
+
+  .aui-lozenge.jira-issue-status-lozenge-green {
+    background-color: transparent !important;
+    border-color: @green !important;
+    color: @green !important;
+  }
+
+  .aui-lozenge.jira-issue-status-lozenge-yellow {
+    background-color: transparent !important;
+    border-color: @peach !important;
+    color: @peach !important;
+  }
+
+  .aui-message.error,
+  .aui-message-error {
+    background: @surface0 !important;
+    background-color: @surface0 !important;
+    color: @subtext1 !important;
+  }
+
+  .aui-message.hint,
+  .aui-message-hint,
+  .aui-message.info,
+  .aui-message-info {
+    background-color: @surface0 !important;
+    color: @subtext1 !important;
+  }
+
+  .aui-message.warning,
+  .aui-message-warning {
+    background: @surface0 !important;
+    background-color: @surface0 !important;
+    color: @subtext1 !important;
+  }
+
+  .aui-sidebar-submenu .aui-navgroup-horizontal .aui-nav>li a:focus,
+  .aui-sidebar-submenu .aui-navgroup-vertical .aui-nav>li>a:focus,
+  .aui-sidebar-submenu .aui-nav-vertical>li>a:focus,
+  .aui-sidebar-submenu .aui-navgroup-horizontal .aui-nav>li a:hover,
+  .aui-sidebar-submenu .aui-navgroup-vertical .aui-nav>li>a:hover,
+  .aui-sidebar-submenu .aui-nav-vertical>li>a:hover {
+    background: transparent !important;
+  }
+
+  .aui-navgroup-horizontal .aui-nav>li a:focus,
+  .aui-navgroup-vertical .aui-nav>li>a:focus,
+  .aui-nav-vertical>li>a:focus,
+  .aui-navgroup-horizontal .aui-nav>li a:hover,
+  .aui-navgroup-vertical .aui-nav>li>a:hover,
+  .aui-nav-vertical>li>a:hover {
+    background: @base !important;
+  }
+
+  .aui-page-panel {
+    background-color: @base !important;
+  }
+
+  .aui-sidebar .aui-nav>li>.aui-nav-item>.aui-icon,
+  .aui-sidebar-submenu .aui-nav>li>.aui-nav-item>.aui-icon {
+    color: @text !important;
+  }
+
+  .aui-sidebar[aria-expanded="false"] .aui-sidebar-group.aui-sidebar-group-actions:after,
+  .aui-sidebar-submenu[aria-expanded="false"] .aui-sidebar-group.aui-sidebar-group-actions:after {
+    background-color: @base !important;
+    border: 1px solid @crust !important;
+  }
+
+  .aui-sidebar[aria-expanded="false"] .aui-navgroup-vertical .aui-nav .aui-nav-child-selected a,
+  .aui-sidebar-submenu[aria-expanded="false"] .aui-navgroup-vertical .aui-nav .aui-nav-child-selected a,
+  .aui-sidebar .aui-navgroup-vertical .aui-nav .aui-nav-selected a,
+  .aui-sidebar-submenu .aui-navgroup-vertical .aui-nav .aui-nav-selected a {
+    background-color: @base !important;
+  }
+
+  .aui-theme-default .aui-button.aui-button-subtle {
+    color: @subtext1 !important;
+  }
+
+  .aui-theme-default .gf-button-cell a.gf-button,
+  .gf-button {
+    background-color: @surface0 !important;
+    background-image: none !important;
+  }
+
+  .aui-toolbar .toolbar-group .toolbar-trigger,
+  .aui-toolbar .aui-dd-parent a.aui-dd-trigger {
+    background-color: @surface0 !important;
+    text-shadow: none !important;
+  }
+
+  .blender {
+    background-image: none !important;
+  }
+
+  .details-layout .split-view .list-results-panel .list-panel .issue-list>li.focused {
+    background-color: @surface0 !important;
+  }
+
+  .issue-search-header {
+    background-color: @base !important;
+  }
+
+  .editable-field .save-options {
+    background-color: @surface0 !important;
+  }
+
+  .editable-field form.aui .text,
+  .editable-field form.aui .password,
+  .editable-field form.aui .textarea,
+  .editable-field form.aui .select,
+  .editable-field form.aui .multi-select {
+    box-shadow: none !important;
+  }
+
+  .editable-field:hover,
+  .editable-field.active {
+    background-color: @base !important;
+  }
+
+  .gadget.color1 .dashboard-item-header,
+  .gadget-colors .color1>a {
+    background-color: @surface0 !important;
+  }
+
+  .ghx-backlog {
+    background-color: @base !important;
+  }
+
+  .ghx-backlog-container .ghx-backlog-header {
+    border: none !important;
+  }
+
+  .ghx-backlog-container,
+  .stuck {
+    background-color: @base !important;
+  }
+
+  .ghx-backlog-header .ghx-name {
+    color: @subtext1 !important;
+  }
+
+  #gh:not(.ghx-sticky-sprint-headers-disabled) .ghx-backlog-container .ghx-backlog-header {
+    background: @base !important;
+  }
+
+  .ghx-column-headers .ghx-column {
+    border-bottom: 5px solid @surface0 !important;
+  }
+
+  .ghx-columns .ghx-column {
+    background: @surface0 !important;
+  }
+
+  .ghx-column-headers .ghx-column {
+    background: @base !important;
+  }
+
+  .ghx-days b {
+    -webkit-filter: invert(100%) !important;
+    filter: invert(100%) !important;
+  }
+
+  .ghx-detail-contents {
+    background: @base !important;
+  }
+
+  .ghx-detail-contents .ghx-detail-view-blanket {
+    background: @base !important;
+  }
+
+  .ghx-detail-issue {
+    color: @text !important;
+  }
+
+  .ghx-detail-nav-item b {
+    background: none !important;
+    color: inherit !important;
+  }
+
+  .ghx-detail-nav-item.ghx-selected {
+    background-color: @surface0 !important;
+  }
+
+  .ghx-detail-nav-item.ghx-selected b {
+    background: none !important;
+  }
+
+  .ghx-detail-view.gh-editable-detail-view #commentmodule .tabwrap .sortwrap .issue-activity-sort-link {
+    background-color: @surface0 !important;
+  }
+
+  .ghx-detail-view.gh-editable-detail-view .ghx-detail-issue .ghx-fa {
+    color: @subtext1 !important;
+  }
+
+  .ghx-drag-in-progress .ghx-backlog-container.ghx-open .ghx-no-issues .ghx-helper,
+  .ghx-drag-in-progress .ghx-backlog-container.ghx-kanban-backlog .ghx-no-issues .ghx-helper {
+    background: @base !important;
+  }
+
+  .ghx-drag-in-progress .ghx-backlog-container.ghx-open.ghx-target-hover .ghx-no-issues .ghx-helper,
+  .ghx-drag-in-progress .ghx-backlog-container.ghx-kanban-backlog.ghx-target-hover .ghx-no-issues .ghx-helper,
+  .ghx-drag-in-progress .ghx-backlog-container.ghx-open.ghx-target-hover .ghx-plan-dropzone.ghx-dropzone-active,
+  .ghx-drag-in-progress .ghx-backlog-container.ghx-kanban-backlog.ghx-target-hover .ghx-plan-dropzone.ghx-dropzone-active {
+    background: @base !important;
+  }
+
+  .ghx-extra-field {
+    color: @subtext1 !important;
+  }
+
+  .ghx-iconfont.aui-icon-small:before,
+  .ghx-iconfont.aui-icon-large:before {
+    color: @text !important;
+  }
+
+  .ghx-inner {
+    color: @text !important;
+  }
+
+  .ghx-issue {
+    background-color: @base !important;
+  }
+
+  .ghx-issue.ghx-selected {
+    background-color: @crust !important;
+  }
+
+  .ghx-issue-compact {
+    background-color: @surface0 !important;
+    color: @subtext1 !important;
+  }
+
+  .ghx-issue-compact.ghx-selected {
+    background-color: @base !important;
+  }
+
+  .ghx-issue-compact .ghx-end {
+    background-color: @surface0 !important;
+    color: @subtext1 !important;
+  }
+
+  .ghx-marker {
+    background-color: @base !important;
+  }
+
+  .ghx-plan-dropzone.ghx-dropzone-active {
+    background: repeating-linear-gradient(45deg,
+        @base,
+        @base 10px,
+        @surface0 10px,
+        @surface0 20px) !important;
+  }
+
+  .ghx-swimlane-header .ghx-bandaid {
+    background-color: @surface0 !important;
+    box-shadow: none !important;
+  }
+
+  .ghx-swimlane-header.ghx-selected {
+    background-color: @surface0 !important;
+  }
+
+  .ghx-swimlane-header:after {
+    background-color: @surface0 !important;
+    box-shadow: none !important;
+  }
+
+  .ghx-zone-cell {
+    background: repeating-linear-gradient(45deg,
+        @base,
+        @base 10px,
+        @surface0 10px,
+        @surface0 20px) !important;
+  }
+
+  .ghx-grabber {
+    background-color: @green !important;
+  }
+
+  .iic-widget,
+  .iic-widget__form {
+    background-color: @base !important;
+  }
+
+  .iic-widget__summary {
+    color: @text !important;
+  }
+
+  .issue-body-content .module>.mod-header .ops {
+    background-color: @surface0 !important;
+  }
+
+  .issue-body-content .module>.mod-header>h1,
+  .issue-body-content .module>.mod-header>h2,
+  .issue-body-content .module>.mod-header>h3,
+  .issue-body-content .module>.mod-header>h4,
+  .issue-body-content .module>.mod-header>h5,
+  .issue-body-content .module>.mod-header>h6 {
+    background-color: @base !important;
+  }
+
+  .issue-data-block {
+    background-color: @surface0 !important;
+  }
+
+  .issue-header .issue-header-content>.command-bar {
+    background-color: @base !important;
+  }
+
+  .issue-view>.issue-container .issue-header {
+    background-color: @base !important;
+  }
+
+  .item-attachments .attachment-content {
+    background-color: @surface0 !important;
+  }
+
+  .jira-dialog {
+    background-color: @base !important;
+  }
+
+  .jira-dialog .buttons-container {
+    background: @base !important;
+  }
+
+  .jira-dialog .buttons-container .hint-container {
+    color: @surface2 !important;
+  }
+
+  .jira-dialog .jira-dialog-content {
+    background: @base !important;
+  }
+
+  .jira-dialog .jira-dialog-heading {
+    background: @base !important;
+  }
+
+  .jira-multi-select>.icon.drop-menu {
+    background: @surface0 !important;
+  }
+
+  .jira-multi-select>.icon.drop-menu:after {
+    color: @text !important;
+  }
+
+  .links-list dd {
+    background-color: @surface0 !important;
+  }
+
+  .loading {
+    background-color: @base !important;
+  }
+
+  .navigator-search {
+    background-color: @base !important;
+  }
+
+  .no-results {
+    background: @surface0 !important;
+    background-color: @surface0 !important;
+    color: @subtext1 !important;
+  }
+
+  .ops li a.drop-menu.active,
+  .ops li a.drop-menu.active:hover,
+  .ops li a.drop-menu:hover {
+    background-color: @surface0 !important;
+  }
+
+  .page-type-split .navigator-body {
+    background-color: @base !important;
+  }
+
+  .page-type-split .navigator-group {
+    background-color: @base !important;
+  }
+
+  .preformatted,
+  .code {
+    background: @surface0 !important;
+  }
+
+  .aui-list li.disabled a:link,
+  .aui-list li.disabled a:visited,
+  .aui-list li.disabled a:focus,
+  .aui-list li.disabled a:hover,
+  .aui-list li.disabled.active a:link,
+  .aui-list li.disabled.active a:visited,
+  .aui-list li.disabled.active a:focus,
+  .aui-list li.disabled.active a:hover,
+  .aui-list li a.disabled:link,
+  .aui-list li a.disabled:visited,
+  .aui-list li a.disabled:focus,
+  .aui-list li a.disabled:hover,
+  .aui-list li.active a.disabled:link,
+  .aui-list li.active a.disabled:visited,
+  .aui-list li.active a.disabled:focus,
+  .aui-list li.active a.disabled:hover {
+    background-color: transparent !important;
+  }
+
+  .property-list .item .name,
+  .item-details dl>dt {
+    color: @text !important;
+  }
+
+  .saved-search-selector {
+    background-color: @base !important;
+  }
+
+  .gf-testing-label {
+    color: @overlay1 !important;
+  }
+
+  .split-view #stalker,
+  .split-view .issue-header {
+    background-color: @base !important;
+  }
+
+  .tabwrap>.tabs.horizontal>li {
+    background-color: @base !important;
+  }
+
+  .tabwrap>.tabs.horizontal>li.active>a,
+  .tabwrap>.tabs.horizontal>li.active>strong {
+    background-color: @base !important;
+  }
+
+  .trigger-label {
+    color: @text !important;
+  }
+
+  .tabwrap>ul.tabs>li a,
+  .tabwrap>ul.tabs>li a:link,
+  .tabwrap>ul.tabs>li a:visited {
+    background-color: @base !important;
+  }
+
+  .wiki-edit-toolbar,
+  .rte-container .tox .tox-statusbar {
+    border: 1px solid @crust !important;
+    background-color: @surface0 !important;
+  }
+
+  .rte-container {
+    background: @surface0 !important;
+  }
+
+  .aui-nav-heading,
+  .aui-navgroup-vertical .aui-nav-heading {
+    color: @text !important;
+  }
+
+  a.aui-button {
+    background: @surface0 !important;
+    color: @text !important;
+    border-color: @crust !important;
+  }
+
+  aui-inline-dialog .aui-inline-dialog-contents,
+  .aui-inline-dialog .aui-inline-dialog-contents,
+  aui-inline-dialog .contents,
+  .aui-inline-dialog .contents {
+    background-color: @surface0 !important;
+  }
+
+  body,
+  html {
+    color: @text !important;
+  }
+
+  button.aui-button {
+    background-color: @surface0 !important;
+    color: @text !important;
+  }
+
+  form.aui .text,
+  form.aui .password,
+  form.aui .upfile,
+  form.aui .textarea,
+  form.aui .select,
+  form.aui .multi-select,
+  form.aui .aui-select2-container,
+  form.aui:not(.aui-legacy-forms) .password,
+  form.aui:not(.aui-legacy-forms) .select,
+  form.aui:not(.aui-legacy-forms) .text,
+  form.aui:not(.aui-legacy-forms) .textarea {
+    background-color: @surface0 !important;
+    border: 1px solid @crust !important;
+    color: @text !important;
+  }
+
+  .richeditor-cover~.rte-container:not(:empty) {
+    border: 1px solid @crust !important;
+  }
+
+  .wiki-edit-toolbar .aui-buttons+.aui-buttons {
+    border-left: 1px solid @crust !important;
+  }
+
+  .wiki-edit-toolbar .aui-buttons .aui-button {
+    border: none;
+  }
+
+  .aui-dialog .dialog-page-body {
+    background: @base !important;
+  }
+
+  .aui-dialog2-header,
+  .aui-dialog2-footer {
+    background: @crust !important;
+  }
+
+  .aui-dialog2-content {
+    background: @crust !important;
+  }
+
+  form.aui:not(.aui-legacy-forms)>input {
+    border: 2px solid @crust !important;
+  }
+
+  .aui-popup {
+    background: @base !important;
+  }
+
+  .aui-dialog {
+    background: @surface0 !important;
+  }
+
+  form.aui legend,
+  form.aui label {
+    color: @text !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: @text !important;
+  }
+
+  .ghx-pool-column,
+  .ghx-pool,
+  .ghx-swimlane,
+  .ghx-column,
+  #ghx-header,
+  .ghx-content-main,
+  #ghx-column-header-group.ghx-fixed,
+  #ghx-pool {
+    background-color: @base !important;
+  }
+
+  table.aui>tbody>tr,
+  table.aui>tfoot>tr {
+    background-color: @base !important;
+    color: @subtext1 !important;
+  }
+
+  table.aui>tbody>tr>th {
+    background-color: @surface0 !important;
+    color: @text !important;
+  }
+
+  .aui-list a.active,
+  .aui-list .aui-list-item.active,
+  .aui-list a.active,
+  .aui-list .aui-list-item.active>a {
+    background: @surface1 !important;
+  }
+
+  .aui-navgroup-vertical .aui-nav>li>a,
+  .aui-nav-vertical>li>a,
+  .aui-list a:link {
+    color: @text !important;
+  }
+
+  .aui-navgroup-vertical .aui-nav>li>a:hover,
+  .aui-nav-vertical>li>a:hover,
+  .aui-list a:hover {
+    text-decoration: underline !important;
+  }
+
+  .aui-button.aui-dropdown2-trigger:not(.aui-dropdown2-trigger-arrowless)::after,
+  .aui-buttons .aui-button.aui-button-primary.aui-dropdown2-trigger:not(.aui-dropdown2-trigger-arrowless)::after {
+    border-top-color: @text !important;
+  }
+
+  .ghx-parent-stub {
+    background: @surface1 !important;
+  }
+
+  .ghx-parent-stub .ghx-summary,
+  .ghx-parent-stub .ghx-key {
+    color: @subtext1 !important;
+  }
+
+  span.pc.highlightChanges {
+    background-color: transparent !important;
+  }
+
+  span.highlightChanges {
+    background-color: transparent !important;
+  }
+
+  .code-quote,
+  .code-quote .code-keyword,
+  .code-quote .code-object {
+    color: @green !important;
+  }
+
+  .code-keyword {
+    color: @blue !important;
+  }
+
+  .wiki-button-bar,
+  .sd-rte-bar {
+    background: @base !important;
+    color: @text !important;
+    border-color: @crust !important;
+  }
+
+  .tabs-menu,
+  .menu-item a,
+  .menu-item {
+    /*background: @surface0 !important;*/
+    color: @text !important;
+    border-color: @crust !important;
+  }
+
+  .active-tab a,
+  .active-tab {
+    color: @overlay1 !important;
+  }
+
+  .panel,
+  body#tinymce .plain.panel,
+  body#tinymce .code.panel,
+  body#tinymce .noformat.panel,
+  .preformatted,
+  .code,
+  body#tinymce pre,
+  body#tinymce pre {
+    background: @surface0 !important;
+    color: @text !important;
+    border-color: @crust !important;
+  }
+
+  th.confluenceTh {
+    background: @surface0 !important;
+    color: @text !important;
+    border-color: @crust !important;
+  }
+
+  body#tinymce table td,
+  body#tinymce table th {
+    color: @subtext1 !important;
+    border-color: @crust !important;
+    background: @base !important;
+  }
+
+  #ghx-update-message,
+  .ghx-tv-message {
+    background: @surface1 !important;
+    color: @text !important;
+    border-color: @crust !important;
+  }
+
+  .upload-progress-bar .upload-progress-bar__file-name {
+    color: @text !important;
+  }
+
+  .upload-progress-bar .upload-progress-bar__file-size {
+    color: @text !important;
+    box-shadow: none !important;
+  }
+
+  #ghx-backlog .ghx-parent-group .ghx-subtask-group {
+    background: @base !important;
+  }
+
+  .ghx-issue-content .ghx-end {
+    box-shadow: none !important;
+  }
+
+  .ghx-row .aui-label {
+    background-color: @surface1 !important;
+  }
+
+  .contained-content,
+  .navigator-body {
+    background: @base !important;
+  }
+
+  .aui-button::after,
+  .aui-dropdown-trigger::after {
+    border-top-color: @text !important;
+  }
+
+  .issuenav-share,
+  .header-operations * {
+    color: white !important;
+    font-weight: normal !important;
+  }
+
+  pre,
+  code {
+    background: @surface0 !important;
+    color: @text !important;
+  }
+
+  #ghx-column-header-group,
+  .ghx-swimlane-header {
+    background: @base !important;
+  }
+
+  #ghx-operations,
+  .issue-search>.aui-page-header {
+    border-bottom: 2px solid @crust !important;
+  }
+
+  .aui-sidebar-footer {
+    border-top: 1px solid @crust !important;
+  }
+
+  .aui-page-panel {
+    border-bottom: 1px solid @crust;
+  }
+
+  .ui-sidebar {
+    background-color: @crust !important;
+  }
+
+  .ui-sidebar:hover {
+    background-color: @blue !important;
+  }
+
+  .inline-issue-create-container {
+    border-top: 2px solid @crust !important;
+    background-color: @base !important;
+  }
+
+  .issue-link-summary {
+    color: @text !important;
+  }
+
+  .count-pagination {
+    background-color: @base !important;
+  }
+
+  .aui-tabs.horizontal-tabs>.tabs-menu::before {
+    background: @base !important;
+  }
+
+  #announcement-banner {
+    border-bottom: none !important;
+  }
+
+  #announcement-banner>div {
+    color: @base !important;
+    border-color: @red !important;
+    background-color: @rosewater !important;
+  }
+
+  .ghx-label-1 {
+    background-color: @text !important;
+    color: @base !important;
+  }
+
+  .ghx-label-2 {
+    background-color: @yellow !important;
+    color: @base !important;
+  }
+
+  .ghx-label-3 {
+    background-color: @rosewater !important;
+    color: @base !important;
+  }
+
+  .ghx-label-4 {
+    background-color: @blue !important;
+    color: @base !important;
+  }
+
+  .ghx-label-5 {
+    background-color: @sky !important;
+    color: @base !important;
+  }
+
+  .ghx-label-6 {
+    background-color: @teal !important;
+    color: @base !important;
+  }
+
+  .ghx-label-7 {
+    background-color: @peach !important;
+    color: @base !important;
+  }
+
+  .ghx-label-8 {
+    background-color: @mauve !important;
+    color: @base !important;
+  }
+
+  .ghx-label-9 {
+    background-color: @pink !important;
+    color: @base !important;
+  }
+
+  .ghx-label-10 {
+    background-color: @lavender !important;
+    color: @base !important;
+  }
+
+  .ghx-label-11 {
+    background-color: @sapphire !important;
+    color: @base !important;
+  }
+
+  .ghx-label-12 {
+    background-color: @overlay2 !important;
+    color: @text !important;
+  }
+
+  .ghx-label-13 {
+    background-color: @green !important;
+    color: @base !important;
+  }
+
+  .ghx-label-14 {
+    background-color: @red !important;
+    color: @base !important;
+  }
+}
