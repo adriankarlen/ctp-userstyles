@@ -9,10 +9,12 @@
 @license MIT
 
 @preprocessor   less
-@var select lightFlavor "Light Flavor" ["latte:Latte*", "frappe:Frappé", "macchiato:Macchiato", "mocha:Mocha"]
-@var select darkFlavor "Dark Flavor" ["latte:Latte", "frappe:Frappé", "macchiato:Macchiato", "mocha:Mocha*"]
+@var select flavor "Flavor" ["latte:Latte", "frappe:Frappe", "macchiato:Macchiato", "mocha:Mocha*"]
+@var select accentColor "Accent" ["blue:Blue", "rosewater:Rosewater*", "flamingo:Flamingo", "pink:Pink", "mauve:Mauve", "red:Red", "maroon:Maroon", "peach:Peach", "yellow:Yellow", "green:Green", "teal:Teal", "sapphire:Sapphire", "sky:Sky", "lavender:Lavender", "subtext0:Gray"]
+@var checkbox usefont "Use Inter font" 0
 ==/UserStyle== */
-@-moz-document url-prefix("https://jira") {
+@-moz-document url-prefix("https://jira")
+{
   @catppuccin: {
     @latte: {
       @rosewater: #dc8a78;
@@ -41,9 +43,7 @@
       @base: #eff1f5;
       @mantle: #e6e9ef;
       @crust: #dce0e8;
-    }
-
-    ;
+    };
 
     @frappe: {
       @rosewater: #f2d5cf;
@@ -72,9 +72,7 @@
       @base: #303446;
       @mantle: #292c3c;
       @crust: #232634;
-    }
-
-    ;
+    };
 
     @macchiato: {
       @rosewater: #f4dbd6;
@@ -103,9 +101,7 @@
       @base: #24273a;
       @mantle: #1e2030;
       @crust: #181926;
-    }
-
-    ;
+    };
 
     @mocha: {
       @rosewater: #f5e0dc;
@@ -134,14 +130,12 @@
       @base: #1e1e2e;
       @mantle: #181825;
       @crust: #11111b;
-    }
+    };
+  };
 
-    ;
-  }
+  #catppuccin(@flavor, @accentColor);
 
-  ;
-
-  #catppuccin(@lookup) {
+  #catppuccin(@lookup, @accent) {
     @rosewater: @catppuccin[@@lookup][@rosewater];
     @flamingo: @catppuccin[@@lookup][@flamingo];
     @pink: @catppuccin[@@lookup][@pink];
@@ -168,33 +162,67 @@
     @base: @catppuccin[@@lookup][@base];
     @mantle: @catppuccin[@@lookup][@mantle];
     @crust: @catppuccin[@@lookup][@crust];
-  }
-
-  @media (prefers-color-scheme: light) {
-    .no-theme {
-      #catppuccin(@lightFlavor);
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .no-theme {
-      #catppuccin(@darkFlavor);
-    }
+    @accent-color: @catppuccin[@@lookup][@@accent];
   }
 
   html,
   body {
     background-color: @base !important;
-    font-family: "Inter", "sans-serif";
+
+    & when (@usefont=1) {
+      font-family: inter, sans-serif;
+    }
+
+    --jira-issue-status-inprogress-color: @crust;
+    --jira-issue-status-inprogress-bgcolor: @accent-color;
+    --jira-issue-status-success-color: @crust;
+    --jira-issue-status-success-bgcolor: @green;
+    --aui-button-default-bg-color: @surface0;
+    --aui-button-default-hover-bg-color: @surface1;
+    --aui-button-default-text-color: @crust;
+    --aui-btn-default-border-color: @crust;
+    --aui-btn-primary-bg-color: @accent-color;
+    --aui-btn-primary-text-color: @crust;
+    --aui-button-primary-hover-bg-color: @accent-color;
+    --aui-button-primary-active-text-color: @crust;
+    --aui-appheader-quicksearch-bg-color: @overlay0;
+    --aui-appheader-quicksearch-border-color: @crust;
+    --aui-appheader-quicksearch-text-color: @text;
+    --aui-appheader-quicksearch-placeholder-text-color: @subtext1;
+    --aui-appheader-quicksearch-focus-bg-color: @base;
+    --aui-focus: @accent-color;
+    --aui-itemheading-text: @subtext1;
+    --aui-table-row-text-color: @subtext1;
+    --aui-table-row-bg-color: @base;
+    --aui-lozenge-current-subtle-text-color: @yellow;
+    --aui-sidebar-bg-color: @mantle;
+    --aui-tooltip-bg-color: @crust;
+    --aui-tooltip-content-text-color: @text;
+  }
+
+  #header > .aui-header.aui-dropdown2-trigger-group {
+    --aui-appheader-bg-color: @mantle;
+    --aui-appheader-text-color: @text;
+    --aui-button-primary-text-color: @crust;
+    --aui-button-primary-bg-color: @accent-color;
+    --aui-button-primary-hover-bg-color: @accent-color;
+    --aui-button-primary-active-bg-color: @accent-color;
+    --aui-button-primary-active-text-color: @crust;
+
+    & .aui-nav > li > a {
+      --aui-item-focus-bg: @surface0;
+      --aui-item-active-bg: @surface0;
+      --aui-item-focus-text: @text;
+      --aui-item-active-text: @text;
+      --aui-appheader-item-focus-bg-color: @surface0;
+      --aui-appheader-item-focus-text-color: @text;
+      --aui-appheader-item-active-bg-color: @surface0;
+      --aui-appheader-item-active-text-color: @text;
+    }
   }
 
   a:not(.type-gh-epic-link > a) {
-    color: @blue !important;
-  }
-
-  input {
-    background: @surface0 !important;
-    color: @text !important;
+    color: @accent-color;
   }
 
   em {
@@ -229,7 +257,7 @@
     background: @overlay0 !important;
   }
 
-  .aui-sidebar-body {
+  .navigator-container {
     background: @crust !important;
   }
 
@@ -247,7 +275,7 @@
   }
 
   .issue-drop-zone__button {
-    color: @blue !important;
+    color: @accent-color !important;
   }
 
   form.aui div.description {
@@ -259,7 +287,7 @@
   }
 
   .jira-dialog .dialog-menu-group .dialog-menu-item {
-    color: @blue !important;
+    color: @accent-color !important;
   }
 
   .aui-select2-container.select2-container .select2-choice,
@@ -275,11 +303,11 @@
     background: @base !important;
   }
 
-  .jira-multi-select>.representation .value-item {
+  .jira-multi-select > .representation .value-item {
     -moz-border-radius: 0 !important;
     border-radius: 0 !important;
     background: @base !important;
-    color: @blue !important;
+    color: @accent-color !important;
   }
 
   .editable-field .overlay-icon {
@@ -296,7 +324,7 @@
 
   .ghx-controls-filters dd a.ghx-active,
   .ghx-controls-filters dd .js-quickfilter-button.ghx-active {
-    background: @blue !important;
+    background: @accent-color !important;
     color: @crust !important;
   }
 
@@ -314,11 +342,11 @@
     background-color: @surface1 !important;
   }
 
-  .ghx-classification-item>.ghx-inner {
+  .ghx-classification-item > .ghx-inner {
     border: none;
   }
 
-  .ghx-ide-menu>li:hover {
+  .ghx-ide-menu > li:hover {
     background-color: @surface1 !important;
   }
 
@@ -333,9 +361,12 @@
     border-color: @base !important;
   }
 
-  .dashboard-content,
-  .aui-page-header {
+  .dashboard-content {
     background-color: @crust !important;
+  }
+
+  .aui-page-header {
+    background-color: inherit !important;
   }
 
   #footer-logo {
@@ -348,18 +379,18 @@
 
   #issuetable,
   .issue-table,
-  #issuetable>thead .active,
-  .issue-table>thead .active,
-  #issuetable>tbody>tr,
-  .issue-table>tbody>tr,
-  #issuetable>tfoot>tr,
-  .issue-table>tfoot>tr,
+  #issuetable > thead .active,
+  .issue-table > thead .active,
+  #issuetable > tbody > tr,
+  .issue-table > tbody > tr,
+  #issuetable > tfoot > tr,
+  .issue-table > tfoot > tr,
   .issuerow {
     background-color: @base !important;
   }
 
-  .issue-table>thead>tr>th,
-  .issue-table>tbody>tr>td {
+  .issue-table > thead > tr > th,
+  .issue-table > tbody > tr > td {
     border-bottom: none !important;
   }
 
@@ -397,22 +428,12 @@
   }
 
   .aui-badge {
-    background-color: @blue !important;
+    background-color: @accent-color !important;
     color: @text !important;
   }
 
   .ghx-sprint-info .ghx-linked-pages-trigger {
     padding: 4px 10px !important;
-  }
-
-  .aui-button.aui-button-primary {
-    background-color: @blue !important;
-    color: @crust !important;
-  }
-
-  .aui-button-primary:focus,
-  .aui-button-primary:hover {
-    background-color: @sky !important;
   }
 
   .aui-button.ghx-dropdown-trigger:after,
@@ -430,41 +451,33 @@
     background: @base;
   }
 
-  .aui-header .aui-dropdown2-trigger {
-    background-color: @base !important;
-    color: @text !important;
+  .aui-header .aui-quicksearch input[type] {
+    border-radius: 6px;
   }
 
-  .aui-dropdown2.aui-style-default>strong,
-  .aui-dropdown2.aui-style-default .aui-dropdown2-section>strong,
+  .aui-dropdown2.aui-style-default > strong,
+  .aui-dropdown2.aui-style-default .aui-dropdown2-section > strong,
   .aui-dropdown2-heading {
     color: @text !important;
   }
 
-  .aui-sidebar[aria-expanded="false"] .aui-sidebar-group.aui-sidebar-group-actions:hover:after,
-  .aui-sidebar-submenu[aria-expanded="false"] .aui-sidebar-group.aui-sidebar-group-actions:hover:after,
-  .aui-sidebar[aria-expanded="false"] .aui-sidebar-group.aui-sidebar-group-actions:focus:after,
-  .aui-sidebar-submenu[aria-expanded="false"] .aui-sidebar-group.aui-sidebar-group-actions:focus:after,
-  .aui-sidebar[aria-expanded="false"] .aui-sidebar-group.aui-sidebar-group-actions.active:after,
-  .aui-sidebar-submenu[aria-expanded="false"] .aui-sidebar-group.aui-sidebar-group-actions.active:after {
+  .aui-sidebar[aria-expanded="false"]
+    .aui-sidebar-group.aui-sidebar-group-actions:hover:after,
+  .aui-sidebar-submenu[aria-expanded="false"]
+    .aui-sidebar-group.aui-sidebar-group-actions:hover:after,
+  .aui-sidebar[aria-expanded="false"]
+    .aui-sidebar-group.aui-sidebar-group-actions:focus:after,
+  .aui-sidebar-submenu[aria-expanded="false"]
+    .aui-sidebar-group.aui-sidebar-group-actions:focus:after,
+  .aui-sidebar[aria-expanded="false"]
+    .aui-sidebar-group.aui-sidebar-group-actions.active:after,
+  .aui-sidebar-submenu[aria-expanded="false"]
+    .aui-sidebar-group.aui-sidebar-group-actions.active:after {
     background-color: @base !important;
     border-color: @text !important;
   }
 
-  .aui-header,
-  .aui-sidebar,
-  .aui-sidebar-wrapper {
-    background-color: @base !important;
-    color: @subtext1 !important;
-  }
-
-  .aui-icon-small:before,
-  .aui-icon-large:before {
-    color: @text !important;
-  }
-
   .aui-label {
-    /*color: @text !important;*/
     border: none !important;
   }
 
@@ -477,16 +490,13 @@
     color: @text !important;
   }
 
-  .aui-dropdown2.aui-style-default:hover .aui-dropdown2-checkbox:not(.aui-dropdown2-disabled):hover,
-  .aui-dropdown2.aui-style-default:hover .aui-dropdown2-radio:not(.aui-dropdown2-disabled):hover,
+  .aui-dropdown2.aui-style-default:hover
+    .aui-dropdown2-checkbox:not(.aui-dropdown2-disabled):hover,
+  .aui-dropdown2.aui-style-default:hover
+    .aui-dropdown2-radio:not(.aui-dropdown2-disabled):hover,
   .aui-dropdown2.aui-style-default:hover a:not(.aui-dropdown2-disabled):hover {
     text-decoration: underline !important;
     color: @text !important;
-  }
-
-  .aui-lozenge-current.aui-lozenge-subtle {
-    border-color: @yellow !important;
-    color: @yellow !important;
   }
 
   .aui-lozenge.aui-lozenge-subtle {
@@ -511,8 +521,16 @@
     color: @peach !important;
   }
 
+  .aui-message {
+    --aui-message-icolor: @blue;
+    background: @surface0 !important;
+    background-color: @surface0 important;
+    color: @subtext1 !important;
+  }
+
   .aui-message.error,
   .aui-message-error {
+    --aui-message-icolor: @red;
     background: @surface0 !important;
     background-color: @surface0 !important;
     color: @subtext1 !important;
@@ -522,32 +540,34 @@
   .aui-message-hint,
   .aui-message.info,
   .aui-message-info {
+    --aui-message-icolor: @blue;
     background-color: @surface0 !important;
     color: @subtext1 !important;
   }
 
   .aui-message.warning,
   .aui-message-warning {
+    --aui-message-icolor: @yellow;
     background: @surface0 !important;
     background-color: @surface0 !important;
     color: @subtext1 !important;
   }
 
-  .aui-sidebar-submenu .aui-navgroup-horizontal .aui-nav>li a:focus,
-  .aui-sidebar-submenu .aui-navgroup-vertical .aui-nav>li>a:focus,
-  .aui-sidebar-submenu .aui-nav-vertical>li>a:focus,
-  .aui-sidebar-submenu .aui-navgroup-horizontal .aui-nav>li a:hover,
-  .aui-sidebar-submenu .aui-navgroup-vertical .aui-nav>li>a:hover,
-  .aui-sidebar-submenu .aui-nav-vertical>li>a:hover {
+  .aui-sidebar-submenu .aui-navgroup-horizontal .aui-nav > li a:focus,
+  .aui-sidebar-submenu .aui-navgroup-vertical .aui-nav > li > a:focus,
+  .aui-sidebar-submenu .aui-nav-vertical > li > a:focus,
+  .aui-sidebar-submenu .aui-navgroup-horizontal .aui-nav > li a:hover,
+  .aui-sidebar-submenu .aui-navgroup-vertical .aui-nav > li > a:hover,
+  .aui-sidebar-submenu .aui-nav-vertical > li > a:hover {
     background: transparent !important;
   }
 
-  .aui-navgroup-horizontal .aui-nav>li a:focus,
-  .aui-navgroup-vertical .aui-nav>li>a:focus,
-  .aui-nav-vertical>li>a:focus,
-  .aui-navgroup-horizontal .aui-nav>li a:hover,
-  .aui-navgroup-vertical .aui-nav>li>a:hover,
-  .aui-nav-vertical>li>a:hover {
+  .aui-navgroup-horizontal .aui-nav > li a:focus,
+  .aui-navgroup-vertical .aui-nav > li > a:focus,
+  .aui-nav-vertical > li > a:focus,
+  .aui-navgroup-horizontal .aui-nav > li a:hover,
+  .aui-navgroup-vertical .aui-nav > li > a:hover,
+  .aui-nav-vertical > li > a:hover {
     background: @base !important;
   }
 
@@ -555,19 +575,24 @@
     background-color: @base !important;
   }
 
-  .aui-sidebar .aui-nav>li>.aui-nav-item>.aui-icon,
-  .aui-sidebar-submenu .aui-nav>li>.aui-nav-item>.aui-icon {
-    color: @text !important;
-  }
-
-  .aui-sidebar[aria-expanded="false"] .aui-sidebar-group.aui-sidebar-group-actions:after,
-  .aui-sidebar-submenu[aria-expanded="false"] .aui-sidebar-group.aui-sidebar-group-actions:after {
+  .aui-sidebar[aria-expanded="false"]
+    .aui-sidebar-group.aui-sidebar-group-actions:after,
+  .aui-sidebar-submenu[aria-expanded="false"]
+    .aui-sidebar-group.aui-sidebar-group-actions:after {
     background-color: @base !important;
     border: 1px solid @crust !important;
   }
 
-  .aui-sidebar[aria-expanded="false"] .aui-navgroup-vertical .aui-nav .aui-nav-child-selected a,
-  .aui-sidebar-submenu[aria-expanded="false"] .aui-navgroup-vertical .aui-nav .aui-nav-child-selected a,
+  .aui-sidebar[aria-expanded="false"]
+    .aui-navgroup-vertical
+    .aui-nav
+    .aui-nav-child-selected
+    a,
+  .aui-sidebar-submenu[aria-expanded="false"]
+    .aui-navgroup-vertical
+    .aui-nav
+    .aui-nav-child-selected
+    a,
   .aui-sidebar .aui-navgroup-vertical .aui-nav .aui-nav-selected a,
   .aui-sidebar-submenu .aui-navgroup-vertical .aui-nav .aui-nav-selected a {
     background-color: @base !important;
@@ -593,7 +618,12 @@
     background-image: none !important;
   }
 
-  .details-layout .split-view .list-results-panel .list-panel .issue-list>li.focused {
+  .details-layout
+    .split-view
+    .list-results-panel
+    .list-panel
+    .issue-list
+    > li.focused {
     background-color: @surface0 !important;
   }
 
@@ -615,11 +645,21 @@
 
   .editable-field:hover,
   .editable-field.active {
-    background-color: @base !important;
+    background-color: @surface0 !important;
+  }
+
+  .editable-field:hover,
+  .editable-field:focus-within,
+  .editable-field.saving {
+    box-shadow: 0 0 0 1px @crust !important;
+  }
+
+  .editable-field .overlay-icon {
+    border-color: @crust !important;
   }
 
   .gadget.color1 .dashboard-item-header,
-  .gadget-colors .color1>a {
+  .gadget-colors .color1 > a {
     background-color: @surface0 !important;
   }
 
@@ -640,7 +680,9 @@
     color: @subtext1 !important;
   }
 
-  #gh:not(.ghx-sticky-sprint-headers-disabled) .ghx-backlog-container .ghx-backlog-header {
+  #gh:not(.ghx-sticky-sprint-headers-disabled)
+    .ghx-backlog-container
+    .ghx-backlog-header {
     background: @base !important;
   }
 
@@ -650,6 +692,7 @@
 
   .ghx-columns .ghx-column {
     background: @surface0 !important;
+    border-radius: 4px !important;
   }
 
   .ghx-column-headers .ghx-column {
@@ -686,7 +729,11 @@
     background: none !important;
   }
 
-  .ghx-detail-view.gh-editable-detail-view #commentmodule .tabwrap .sortwrap .issue-activity-sort-link {
+  .ghx-detail-view.gh-editable-detail-view
+    #commentmodule
+    .tabwrap
+    .sortwrap
+    .issue-activity-sort-link {
     background-color: @surface0 !important;
   }
 
@@ -694,25 +741,36 @@
     color: @subtext1 !important;
   }
 
-  .ghx-drag-in-progress .ghx-backlog-container.ghx-open .ghx-no-issues .ghx-helper,
-  .ghx-drag-in-progress .ghx-backlog-container.ghx-kanban-backlog .ghx-no-issues .ghx-helper {
+  .ghx-drag-in-progress
+    .ghx-backlog-container.ghx-open
+    .ghx-no-issues
+    .ghx-helper,
+  .ghx-drag-in-progress
+    .ghx-backlog-container.ghx-kanban-backlog
+    .ghx-no-issues
+    .ghx-helper {
     background: @base !important;
   }
 
-  .ghx-drag-in-progress .ghx-backlog-container.ghx-open.ghx-target-hover .ghx-no-issues .ghx-helper,
-  .ghx-drag-in-progress .ghx-backlog-container.ghx-kanban-backlog.ghx-target-hover .ghx-no-issues .ghx-helper,
-  .ghx-drag-in-progress .ghx-backlog-container.ghx-open.ghx-target-hover .ghx-plan-dropzone.ghx-dropzone-active,
-  .ghx-drag-in-progress .ghx-backlog-container.ghx-kanban-backlog.ghx-target-hover .ghx-plan-dropzone.ghx-dropzone-active {
+  .ghx-drag-in-progress
+    .ghx-backlog-container.ghx-open.ghx-target-hover
+    .ghx-no-issues
+    .ghx-helper,
+  .ghx-drag-in-progress
+    .ghx-backlog-container.ghx-kanban-backlog.ghx-target-hover
+    .ghx-no-issues
+    .ghx-helper,
+  .ghx-drag-in-progress
+    .ghx-backlog-container.ghx-open.ghx-target-hover
+    .ghx-plan-dropzone.ghx-dropzone-active,
+  .ghx-drag-in-progress
+    .ghx-backlog-container.ghx-kanban-backlog.ghx-target-hover
+    .ghx-plan-dropzone.ghx-dropzone-active {
     background: @base !important;
   }
 
   .ghx-extra-field {
     color: @subtext1 !important;
-  }
-
-  .ghx-iconfont.aui-icon-small:before,
-  .ghx-iconfont.aui-icon-large:before {
-    color: @text !important;
   }
 
   .ghx-inner {
@@ -721,6 +779,7 @@
 
   .ghx-issue {
     background-color: @base !important;
+    border-radius: 4px !important;
   }
 
   .ghx-issue.ghx-selected {
@@ -746,11 +805,13 @@
   }
 
   .ghx-plan-dropzone.ghx-dropzone-active {
-    background: repeating-linear-gradient(45deg,
-        @base,
-        @base 10px,
-        @surface0 10px,
-        @surface0 20px) !important;
+    background: repeating-linear-gradient(
+      45deg,
+      @base,
+      @base 10px,
+      @surface0 10px,
+      @surface0 20px
+    ) !important;
   }
 
   .ghx-swimlane-header .ghx-bandaid {
@@ -768,15 +829,29 @@
   }
 
   .ghx-zone-cell {
-    background: repeating-linear-gradient(45deg,
-        @base,
-        @base 10px,
-        @surface0 10px,
-        @surface0 20px) !important;
+    border-color: @blue !important;
+    background: repeating-linear-gradient(
+      45deg,
+      @base,
+      @base 10px,
+      @surface0 10px,
+      @surface0 20px
+    ) !important;
+  }
+
+  .ghx-zone-row.ghx-target-hover .ghx-zone-cell {
+    border-color: @green !important;
+  }
+
+  .ghx-zone-row.ghx-target-hover:first-child .ghx-zone-cell {
+    border-top-color: @green !important;
   }
 
   .ghx-grabber {
     background-color: @green !important;
+    width: 4px !important;
+    border-top-left-radius: 4px !important;
+    border-bottom-left-radius: 4px !important;
   }
 
   .iic-widget,
@@ -788,33 +863,40 @@
     color: @text !important;
   }
 
-  .issue-body-content .module>.mod-header .ops {
+  .issue-body-content .module > .mod-header .ops {
     background-color: @surface0 !important;
   }
 
-  .issue-body-content .module>.mod-header>h1,
-  .issue-body-content .module>.mod-header>h2,
-  .issue-body-content .module>.mod-header>h3,
-  .issue-body-content .module>.mod-header>h4,
-  .issue-body-content .module>.mod-header>h5,
-  .issue-body-content .module>.mod-header>h6 {
+  .issue-body-content .module > .mod-header > h1,
+  .issue-body-content .module > .mod-header > h2,
+  .issue-body-content .module > .mod-header > h3,
+  .issue-body-content .module > .mod-header > h4,
+  .issue-body-content .module > .mod-header > h5,
+  .issue-body-content .module > .mod-header > h6 {
     background-color: @base !important;
   }
 
   .issue-data-block {
     background-color: @surface0 !important;
+    border-radius: 8px !important;
+    border-bottom: none !important;
+    margin-bottom: 8px !important;
   }
 
-  .issue-header .issue-header-content>.command-bar {
+  .issue-header .issue-header-content > .command-bar {
     background-color: @base !important;
   }
 
-  .issue-view>.issue-container .issue-header {
+  .issue-view > .issue-container .issue-header {
     background-color: @base !important;
   }
 
   .item-attachments .attachment-content {
     background-color: @surface0 !important;
+  }
+
+  .item-attachments .attachment-content .attachment-thumb {
+    border-color: @crust !important;
   }
 
   .jira-dialog {
@@ -837,16 +919,21 @@
     background: @base !important;
   }
 
-  .jira-multi-select>.icon.drop-menu {
+  .jira-multi-select > .icon.drop-menu {
     background: @surface0 !important;
   }
 
-  .jira-multi-select>.icon.drop-menu:after {
+  .jira-multi-select > .icon.drop-menu:after {
     color: @text !important;
+  }
+
+  .links-list dt {
+    border: none !important;
   }
 
   .links-list dd {
     background-color: @surface0 !important;
+    border: 1px solid @crust !important;
   }
 
   .loading {
@@ -902,7 +989,7 @@
   }
 
   .property-list .item .name,
-  .item-details dl>dt {
+  .item-details dl > dt {
     color: @text !important;
   }
 
@@ -919,12 +1006,12 @@
     background-color: @base !important;
   }
 
-  .tabwrap>.tabs.horizontal>li {
+  .tabwrap > .tabs.horizontal > li {
     background-color: @base !important;
   }
 
-  .tabwrap>.tabs.horizontal>li.active>a,
-  .tabwrap>.tabs.horizontal>li.active>strong {
+  .tabwrap > .tabs.horizontal > li.active > a,
+  .tabwrap > .tabs.horizontal > li.active > strong {
     background-color: @base !important;
   }
 
@@ -932,9 +1019,9 @@
     color: @text !important;
   }
 
-  .tabwrap>ul.tabs>li a,
-  .tabwrap>ul.tabs>li a:link,
-  .tabwrap>ul.tabs>li a:visited {
+  .tabwrap > ul.tabs > li a,
+  .tabwrap > ul.tabs > li a:link,
+  .tabwrap > ul.tabs > li a:visited {
     background-color: @base !important;
   }
 
@@ -951,12 +1038,6 @@
   .aui-nav-heading,
   .aui-navgroup-vertical .aui-nav-heading {
     color: @text !important;
-  }
-
-  a.aui-button {
-    background: @surface0 !important;
-    color: @text !important;
-    border-color: @crust !important;
   }
 
   aui-inline-dialog .aui-inline-dialog-contents,
@@ -992,11 +1073,11 @@
     color: @text !important;
   }
 
-  .richeditor-cover~.rte-container:not(:empty) {
+  .richeditor-cover ~ .rte-container:not(:empty) {
     border: 1px solid @crust !important;
   }
 
-  .wiki-edit-toolbar .aui-buttons+.aui-buttons {
+  .wiki-edit-toolbar .aui-buttons + .aui-buttons {
     border-left: 1px solid @crust !important;
   }
 
@@ -1017,7 +1098,7 @@
     background: @crust !important;
   }
 
-  form.aui:not(.aui-legacy-forms)>input {
+  form.aui:not(.aui-legacy-forms) > input {
     border: 2px solid @crust !important;
   }
 
@@ -1053,13 +1134,13 @@
     background-color: @base !important;
   }
 
-  table.aui>tbody>tr,
-  table.aui>tfoot>tr {
-    background-color: @base !important;
-    color: @subtext1 !important;
-  }
+  // table.aui>tbody>tr,
+  // table.aui>tfoot>tr {
+  //   background-color: @base !important;
+  //   color: @subtext1 !important;
+  // }
 
-  table.aui>tbody>tr>th {
+  table.aui > tbody > tr > th {
     background-color: @surface0 !important;
     color: @text !important;
   }
@@ -1067,24 +1148,29 @@
   .aui-list a.active,
   .aui-list .aui-list-item.active,
   .aui-list a.active,
-  .aui-list .aui-list-item.active>a {
+  .aui-list .aui-list-item.active > a {
     background: @surface1 !important;
   }
 
-  .aui-navgroup-vertical .aui-nav>li>a,
-  .aui-nav-vertical>li>a,
+  .aui-navgroup-vertical .aui-nav > li > a,
+  .aui-nav-vertical > li > a,
   .aui-list a:link {
     color: @text !important;
   }
 
-  .aui-navgroup-vertical .aui-nav>li>a:hover,
-  .aui-nav-vertical>li>a:hover,
+  .aui-navgroup-vertical .aui-nav > li > a:hover,
+  .aui-nav-vertical > li > a:hover,
   .aui-list a:hover {
     text-decoration: underline !important;
   }
 
-  .aui-button.aui-dropdown2-trigger:not(.aui-dropdown2-trigger-arrowless)::after,
-  .aui-buttons .aui-button.aui-button-primary.aui-dropdown2-trigger:not(.aui-dropdown2-trigger-arrowless)::after {
+  .aui-button.aui-dropdown2-trigger:not(
+      .aui-dropdown2-trigger-arrowless
+    )::after,
+  .aui-buttons
+    .aui-button.aui-button-primary.aui-dropdown2-trigger:not(
+      .aui-dropdown2-trigger-arrowless
+    )::after {
     border-top-color: @text !important;
   }
 
@@ -1112,7 +1198,7 @@
   }
 
   .code-keyword {
-    color: @blue !important;
+    color: @accent-color !important;
   }
 
   .wiki-button-bar,
@@ -1148,6 +1234,7 @@
     border-color: @crust !important;
   }
 
+  td.confluenceTd,
   th.confluenceTh {
     background: @surface0 !important;
     color: @text !important;
@@ -1185,10 +1272,6 @@
     box-shadow: none !important;
   }
 
-  .ghx-row .aui-label {
-    background-color: @surface1 !important;
-  }
-
   .contained-content,
   .navigator-body {
     background: @base !important;
@@ -1201,7 +1284,7 @@
 
   .issuenav-share,
   .header-operations * {
-    color: white !important;
+    color: @text !important;
     font-weight: normal !important;
   }
 
@@ -1217,7 +1300,7 @@
   }
 
   #ghx-operations,
-  .issue-search>.aui-page-header {
+  .issue-search > .aui-page-header {
     border-bottom: 2px solid @crust !important;
   }
 
@@ -1234,7 +1317,7 @@
   }
 
   .ui-sidebar:hover {
-    background-color: @blue !important;
+    background-color: @accent-color !important;
   }
 
   .inline-issue-create-container {
@@ -1250,18 +1333,19 @@
     background-color: @base !important;
   }
 
-  .aui-tabs.horizontal-tabs>.tabs-menu::before {
+  .aui-tabs.horizontal-tabs > .tabs-menu::before {
     background: @base !important;
   }
 
   #announcement-banner {
-    border-bottom: none !important;
+    background-color: @mantle !important;
+    border-bottom: 1px solid @crust !important;
   }
 
-  #announcement-banner>div {
-    color: @base !important;
-    border-color: @red !important;
-    background-color: @rosewater !important;
+  #announcement-banner > div {
+    color: @subtext1 !important;
+    border-color: @crust !important;
+    background-color: @surface0 !important;
   }
 
   .ghx-label-1 {
@@ -1321,7 +1405,7 @@
 
   .ghx-label-12 {
     background-color: @overlay2 !important;
-    color: @text !important;
+    color: @crust !important;
   }
 
   .ghx-label-13 {
@@ -1332,5 +1416,142 @@
   .ghx-label-14 {
     background-color: @red !important;
     color: @base !important;
+  }
+
+  form#issue-filter .check-list-item.active,
+  form.aui .check-list-item.active,
+  .check-list-item.active,
+  .check-list-group-footer.active {
+    background-color: @crust !important;
+    color: @text !important;
+  }
+
+  check-list-select .aui-list-scroll .aui-list-section-footer {
+    background-color: @crust !important;
+    color: @text !important;
+  }
+
+  .panelContent {
+    background-color: inherit !important;
+  }
+
+  #addcomment.sticky {
+    background-color: @base !important;
+    border-top: 2px solid @crust !important;
+  }
+
+  #addcomment.sticky #footer-comment-button {
+    border-color: @crust !important;
+    background: @surface0 !important;
+    color: @text !important;
+  }
+
+  .rlabs-panel-box-empty {
+    border-radius: 8px !important;
+    border-color: @crust !important;
+  }
+
+  kbd {
+    background-color: @surface0 !important;
+    color: @text !important;
+    border-color: @crust !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+  }
+
+  .jac-intro-container {
+    tbody {
+      tr:hover {
+        background-color: @surface0 !important;
+      }
+
+      td {
+        border-color: @crust !important;
+      }
+    }
+
+    .jac-status {
+      background-color: @surface0 !important;
+      color: @text !important;
+    }
+  }
+
+  .aui-dropdown2.aui-style-default:hover
+    .aui-dropdown2-checkbox:not(.aui-dropdown2-disabled):hover,
+  .aui-dropdown2.aui-style-default:hover
+    .aui-dropdown2-radio:not(.aui-dropdown2-disabled):hover,
+  .aui-dropdown2.aui-style-default:hover a:not(.aui-dropdown2-disabled):hover {
+    background-color: @surface0 !important;
+  }
+
+  .aui-dropdown2 {
+    padding: 0px !important;
+  }
+
+  .ghx-detail-nav-item .aui-icon {
+    color: @overlay0 !important;
+  }
+
+  .ghx-issue .ghx-key-link {
+    color: @overlay0;
+  }
+
+  .quicksearch-dropdown {
+    background-color: @surface0 !important;
+    border-radius: 6px;
+    border: 1px @crust solid;
+
+    & .icon-container {
+      color: @accent-color !important;
+    }
+
+    & .icon-container.quick-search-active {
+      background-color: @surface2 !important;
+    }
+  }
+
+  .quick-search-subtitle-container {
+    color: @subtext0 !important;
+  }
+
+  .dynamic-table tr:hover {
+    background-color: @surface0 !important;
+  }
+
+  .whats-new-container,
+  table.top-container {
+    border-color: @crust;
+  }
+
+  .versions-table .progressbar-container {
+    & .progressbar__entry_complete {
+      background: @green;
+    }
+    .progressbar__entry_in-progress {
+      background: @blue;
+    }
+    & .versions-table .progressbar-container .progressbar__entry_to-do {
+      background: @surface1;
+    }
+    & .progressbar__entry + .progressbar__entry {
+      border-color: @crust;
+    }
+  }
+
+  .progress-statuses__table__badge_complete {
+    background: @green;
+    color: @crust;
+  }
+
+  .progress-statuses__table__badge_in-progress {
+    background: @blue;
+    color: @crust;
+  }
+
+  .progress-statuses__table__badge_to-do {
+    background: @surface1;
+    color: @text;
   }
 }

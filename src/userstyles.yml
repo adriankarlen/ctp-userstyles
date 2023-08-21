@@ -75,6 +75,9 @@ collaborators:
   - &skelebro1
     name: skele
     url: https://github.com/skelebro1
+  - &adriankarlen
+    name: Adrian Karlen
+    url: httpd://github.com/adriankarlen
 
 userstyles:
   advent-of-code:
@@ -227,6 +230,13 @@ userstyles:
       app-link: "https://github.com/libreddit/libreddit"
       current-maintainers: [*isabelroses]
       past-maintainers: [*andreasgrafen]
+  jira:
+    name: Jira
+    category: productivity
+    color: blue
+    readme:
+      app-link: "https://jira.com"
+      current-maintainers: [*adriankarlen]
   mastodon:
     name: Mastodon
     category: social
