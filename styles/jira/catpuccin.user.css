@@ -175,14 +175,21 @@
 
     --jira-issue-status-inprogress-color: @crust;
     --jira-issue-status-inprogress-bgcolor: @accent-color;
+    --jira-issue-status-hover-inprogress-bgcolor: @accent-color;
     --jira-issue-status-success-color: @crust;
     --jira-issue-status-success-bgcolor: @green;
-    --aui-button-default-bg-color: @surface0;
-    --aui-button-default-hover-bg-color: @surface1;
-    --aui-button-default-text-color: @crust;
+    --jira-issue-status-hover-success-bgcolor: @green;
+    --aui-button-default-bg-color: @surface2;
+    --aui-button-default-hover-bg-color: @overlay0;
+    --aui-button-default-text-color: @text;
+    --aui-button-default-selected-bg-color: @overlay0;
+    --aui-button-default-selected-text-color: @text;
+    --aui-button-subtle-text-color: @subtext1;
     --aui-btn-default-border-color: @crust;
     --aui-btn-primary-bg-color: @accent-color;
     --aui-btn-primary-text-color: @crust;
+    --aui-button-primary-bg-color: @accent-color;
+    --aui-button-primary-text-color: @crust;
     --aui-button-primary-hover-bg-color: @accent-color;
     --aui-button-primary-active-text-color: @crust;
     --aui-appheader-quicksearch-bg-color: @overlay0;
@@ -198,6 +205,13 @@
     --aui-sidebar-bg-color: @mantle;
     --aui-tooltip-bg-color: @crust;
     --aui-tooltip-content-text-color: @text;
+    --aui-tabs-tab-text-color: @subtext0;
+    --aui-tabs-tab-active-text-color: @accent-color;
+    --aui-tabs-tab-active-border-color: @accent-color;
+    --aui-tabs-tab-hover-text-color: @accent-color;
+    --aui-body-text: @subtext1;
+    --aui-form-error-text-color: @red;
+    --ds-link: @blue;
   }
 
   #header > .aui-header.aui-dropdown2-trigger-group {
@@ -598,10 +612,6 @@
     background-color: @base !important;
   }
 
-  .aui-theme-default .aui-button.aui-button-subtle {
-    color: @subtext1 !important;
-  }
-
   .aui-theme-default .gf-button-cell a.gf-button,
   .gf-button {
     background-color: @surface0 !important;
@@ -618,13 +628,11 @@
     background-image: none !important;
   }
 
-  .details-layout
-    .split-view
-    .list-results-panel
-    .list-panel
-    .issue-list
-    > li.focused {
-    background-color: @surface0 !important;
+  .details-layout .split-view .list-results-panel .list-panel .issue-list > li {
+    border-color: @crust;
+    &.focused {
+      background-color: @surface0;
+    }
   }
 
   .issue-search-header {
@@ -1208,18 +1216,18 @@
     border-color: @crust !important;
   }
 
-  .tabs-menu,
-  .menu-item a,
-  .menu-item {
-    /*background: @surface0 !important;*/
-    color: @text !important;
-    border-color: @crust !important;
-  }
+  // .tabs-menu,
+  // .menu-item a,
+  // .menu-item {
+  //   /*background: @surface0 !important;*/
+  //   color: @text !important;
+  //   border-color: @crust !important;
+  // }
 
-  .active-tab a,
-  .active-tab {
-    color: @overlay1 !important;
-  }
+  // .active-tab a,
+  // .active-tab {
+  //   color: @overlay1 !important;
+  // }
 
   .panel,
   body#tinymce .plain.panel,
@@ -1553,5 +1561,90 @@
   .progress-statuses__table__badge_to-do {
     background: @surface1;
     color: @text;
+  }
+
+  .aui-button.aui-button-link {
+    padding: 4px 10px;
+    color: @blue;
+    &:active,
+    &:focus,
+    &:hover,
+    &:visited {
+      color: @blue;
+    }
+  }
+
+  .aui-theme-default .list-ordering a.order-by {
+    color: @text;
+    &:link,
+    &:visited {
+      color: @text;
+    }
+  }
+
+  .aui-sidebar .aui-page-header-main .aui-item.project-title a {
+    color: @text;
+  }
+
+  aui-badge,
+  .aui-badge {
+    background-color: @surface2;
+    color: @text;
+  }
+
+  .aui-list a:visited {
+    color: @blue;
+  }
+
+  #structure {
+    & .tableHeader .th-ctl .th-ctl-hi {
+      background-color: @surface0;
+    }
+    & .st-focused .tr.s-focused,
+    & .st-details-focused .tr.s-focused {
+      background-color: @mantle;
+    }
+    & .tr,
+    & .sechead,
+    & .foot {
+      border-color: @crust;
+    }
+  }
+
+  #st-edit-column .grad,
+  #structure .grad {
+    display: none;
+  }
+
+  .s-th-handle {
+    background-color: @base;
+    color: @text;
+  }
+
+  .rlabs-customfield-viewdialog-object {
+    background-color: @surface0;
+    color: @text;
+    border-color: @crust;
+
+    &:hover {
+      background-color: @surface0;
+    }
+  }
+
+  .rlabs-jira-overview-item div.rlabs-jira-title {
+    color: @subtext0;
+  }
+
+  ._30jD7Sgf0G._14lnIkFvBq._3RyvKZTaDQ {
+    background-color: @red;
+    color: @crust;
+  }
+
+  .W6hSfDV_mv {
+    color: @text;
+  }
+
+  ._3et9awa3jh {
+    color: @subtext0;
   }
 }
