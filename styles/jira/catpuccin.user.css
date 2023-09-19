@@ -201,6 +201,9 @@
     --aui-itemheading-text: @subtext1;
     --aui-table-row-text-color: @subtext1;
     --aui-table-row-bg-color: @base;
+    --aui-lozenge-success-bg-color: @green;
+    --aui-lozenge-success-text-color: @crust;
+    --aui-lozenge-bg-color: @surface0;
     --aui-lozenge-current-subtle-text-color: @yellow;
     --aui-sidebar-bg-color: @mantle;
     --aui-tooltip-bg-color: @crust;
@@ -210,6 +213,11 @@
     --aui-tabs-tab-active-border-color: @accent-color;
     --aui-tabs-tab-hover-text-color: @accent-color;
     --aui-body-text: @subtext1;
+    --aui-body-background: @base;
+    --aui-page-background: @base;
+    --aui-page-border: @crust;
+    --aui-border: @crust;
+    --aui-border-strong: @surface0;
     --aui-form-error-text-color: @red;
     --ds-link: @blue;
   }
@@ -439,11 +447,6 @@
 
   .applinks-auth-request {
     background-color: @surface0 !important;
-  }
-
-  .aui-badge {
-    background-color: @accent-color !important;
-    color: @text !important;
   }
 
   .ghx-sprint-info .ghx-linked-pages-trigger {
@@ -795,17 +798,33 @@
   }
 
   .ghx-issue-compact {
-    background-color: @surface0 !important;
-    color: @subtext1 !important;
-  }
+    background: @surface0;
+    color: @subtext1;
+    border-radius: 4px;
+    margin-top: unset;
 
-  .ghx-issue-compact.ghx-selected {
-    background-color: @base !important;
-  }
+    &.ghx-selected {
+      background: @surface2;
 
-  .ghx-issue-compact .ghx-end {
-    background-color: @surface0 !important;
-    color: @subtext1 !important;
+      .ghx-statistic-badge {
+        background: @surface0;
+      }
+    }
+
+    .ghx-end {
+      background: inherit !important;
+    }
+
+    &:hover {
+      background: @surface1;
+
+      &.ghx-selected {
+        background: @overlay0;
+      }
+    }
+    // &:not(:last-child) {
+    //   margin-bottom: 4px;
+    // }
   }
 
   .ghx-marker {
@@ -1128,7 +1147,7 @@
   h3,
   h4,
   h5 {
-    color: @text !important;
+    color: @text;
   }
 
   .ghx-pool-column,
@@ -1139,14 +1158,20 @@
   .ghx-content-main,
   #ghx-column-header-group.ghx-fixed,
   #ghx-pool {
-    background-color: @base !important;
+    background-color: @base;
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5 {
+      color: @text;
+    }
   }
 
-  // table.aui>tbody>tr,
-  // table.aui>tfoot>tr {
-  //   background-color: @base !important;
-  //   color: @subtext1 !important;
-  // }
+  span.subnav-page-header {
+    color: @overlay0;
+    font-weight: 600;
+  }
 
   table.aui > tbody > tr > th {
     background-color: @surface0 !important;
@@ -1215,19 +1240,6 @@
     color: @text !important;
     border-color: @crust !important;
   }
-
-  // .tabs-menu,
-  // .menu-item a,
-  // .menu-item {
-  //   /*background: @surface0 !important;*/
-  //   color: @text !important;
-  //   border-color: @crust !important;
-  // }
-
-  // .active-tab a,
-  // .active-tab {
-  //   color: @overlay1 !important;
-  // }
 
   .panel,
   body#tinymce .plain.panel,
@@ -1590,6 +1602,21 @@
   .aui-badge {
     background-color: @surface2;
     color: @text;
+
+    &.ghx-not-started {
+      background: @surface2;
+      color: @text;
+    }
+
+    &.ghx-in-progress {
+      background: @blue;
+      color: @crust;
+    }
+
+    &.ghx-done {
+      background: @green;
+      color: @crust;
+    }
   }
 
   .aui-list a:visited {
@@ -1646,5 +1673,44 @@
 
   ._3et9awa3jh {
     color: @subtext0;
+  }
+
+  /* Gadget colors */
+  .gadget .gadget-menu .aui-icon {
+    color: @crust;
+  }
+
+  .gadget.color1 .dashboard-item-header {
+    background-color: @surface0;
+  }
+
+  .gadget.color2 .dashboard-item-header {
+    background-color: @red;
+    & > * {
+      color: @crust;
+    }
+  }
+
+  .gadget.color3 .dashboard-item-header {
+    background-color: @yellow;
+    & > * {
+      color: @crust;
+    }
+  }
+
+  .gadget.color4 .dashboard-item-header {
+    background-color: @green;
+    & > * {
+      color: @crust;
+    }
+  }
+
+  .ghx-backlog-container .ghx-issues .ghx-helper,
+  .ghx-backlog-container .ghx-helper {
+    border-color: @overlay2;
+  }
+
+  .ghx-description {
+    color: @overlay2;
   }
 }
