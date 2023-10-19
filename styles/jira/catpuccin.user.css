@@ -170,17 +170,19 @@
     background-color: @base !important;
 
     & when (@usefont=1) {
-      font-family: inter, sans-serif;
+      font-family: Inter, sans-serif;
     }
 
+    --jira-issue-status-defailt-color: @text;
+    --jira-issue-status-default-bgcolor: @surface0;
     --jira-issue-status-inprogress-color: @crust;
     --jira-issue-status-inprogress-bgcolor: @accent-color;
     --jira-issue-status-hover-inprogress-bgcolor: @accent-color;
     --jira-issue-status-success-color: @crust;
     --jira-issue-status-success-bgcolor: @green;
     --jira-issue-status-hover-success-bgcolor: @green;
-    --aui-button-default-bg-color: @surface2;
-    --aui-button-default-hover-bg-color: @overlay0;
+    --aui-button-default-bg-color: @surface0;
+    --aui-button-default-hover-bg-color: @surface1;
     --aui-button-default-text-color: @text;
     --aui-button-default-selected-bg-color: @overlay0;
     --aui-button-default-selected-text-color: @text;
@@ -201,10 +203,13 @@
     --aui-itemheading-text: @subtext1;
     --aui-table-row-text-color: @subtext1;
     --aui-table-row-bg-color: @base;
+    --aui-lozenge-current-bg-color: @accent-color;
+    --aui-lozenge-current-text-color: @crust;
     --aui-lozenge-success-bg-color: @green;
     --aui-lozenge-success-text-color: @crust;
     --aui-lozenge-bg-color: @surface0;
     --aui-lozenge-current-subtle-text-color: @yellow;
+    --aui-lozenge-new-subtle-text-color: @green;
     --aui-sidebar-bg-color: @mantle;
     --aui-tooltip-bg-color: @crust;
     --aui-tooltip-content-text-color: @text;
@@ -219,7 +224,13 @@
     --aui-border: @crust;
     --aui-border-strong: @surface0;
     --aui-form-error-text-color: @red;
+    --aui-blanket: fade(@crust, 45%);
     --ds-link: @blue;
+    --ds-background-input: @surface0;
+    --ds-border-input: @crust;
+    --ds-border: @crust;
+    --ds-text: @text;
+    --ds-surface: @surface2;
   }
 
   #header > .aui-header.aui-dropdown2-trigger-group {
@@ -230,6 +241,8 @@
     --aui-button-primary-hover-bg-color: @accent-color;
     --aui-button-primary-active-bg-color: @accent-color;
     --aui-button-primary-active-text-color: @crust;
+
+    border-color: @crust;
 
     & .aui-nav > li > a {
       --aui-item-focus-bg: @surface0;
@@ -355,13 +368,26 @@
     background: @surface0 !important;
   }
 
+  .ghx-controls-filters dd a:focus {
+    box-shadow: 0 0 0 2px @accent-color;
+  }
+
+  .ghx-controls-list dt {
+    color: @subtext1 !important;
+  }
+
+  .ghx-sprint-info {
+    color: @subtext1 !important;
+  }
+
   .ghx-classification-item {
     background-color: @base !important;
   }
 
   .ghx-classification-item:hover,
   .ghx-classification-item.ghx-selected {
-    background-color: @surface1 !important;
+    background-color: @surface1;
+    border-color: transparent;
   }
 
   .ghx-classification-item > .ghx-inner {
@@ -381,6 +407,12 @@
   .gadget .dashboard-item-content {
     background-color: @base !important;
     border-color: @base !important;
+  }
+
+  #dashboard > .vertical.tabs,
+  #dashboard > .dashboard-content {
+    background: @base;
+    border-right: 1px solid @crust;
   }
 
   .dashboard-content {
@@ -517,32 +549,31 @@
   }
 
   .aui-lozenge.aui-lozenge-subtle {
-    background-color: @surface0 !important;
+    background-color: @surface1 !important;
   }
 
+  .aui-lozenge.aui-lozenge-subtle.jira-issue-status-lozenge-medium-gray,
+  .aui-lozenge.aui-lozenge-subtle.jira-issue-status-lozenge-blue-gray,
+  .aui-lozenge.aui-lozenge-subtle.jira-issue-status-lozenge-default,
   .aui-lozenge.jira-issue-status-lozenge-blue-gray {
     background-color: transparent !important;
     border-color: @blue !important;
     color: @blue !important;
   }
 
+  .aui-lozenge.aui-lozenge-subtle.jira-issue-status-lozenge-green,
+  .aui-lozenge.aui-lozenge-subtle.jira-issue-status-lozenge-success,
   .aui-lozenge.jira-issue-status-lozenge-green {
     background-color: transparent !important;
     border-color: @green !important;
     color: @green !important;
   }
 
+  .aui-lozenge.aui-lozenge-subtle.jira-issue-status-lozenge-yellow,
   .aui-lozenge.jira-issue-status-lozenge-yellow {
     background-color: transparent !important;
     border-color: @peach !important;
     color: @peach !important;
-  }
-
-  .aui-message {
-    --aui-message-icolor: @blue;
-    background: @surface0 !important;
-    background-color: @surface0 important;
-    color: @subtext1 !important;
   }
 
   .aui-message.error,
@@ -710,11 +741,6 @@
     background: @base !important;
   }
 
-  .ghx-days b {
-    -webkit-filter: invert(100%) !important;
-    filter: invert(100%) !important;
-  }
-
   .ghx-detail-contents {
     background: @base !important;
   }
@@ -781,11 +807,11 @@
   }
 
   .ghx-extra-field {
-    color: @subtext1 !important;
+    color: @subtext0;
   }
 
   .ghx-inner {
-    color: @text !important;
+    color: @subtext1;
   }
 
   .ghx-issue {
@@ -822,9 +848,6 @@
         background: @overlay0;
       }
     }
-    // &:not(:last-child) {
-    //   margin-bottom: 4px;
-    // }
   }
 
   .ghx-marker {
@@ -881,6 +904,24 @@
     border-bottom-left-radius: 4px !important;
   }
 
+  .ghx-classification-progress .ghx-implemented {
+    background-color: @accent-color !important;
+  }
+
+  #ghx-backlog-search .aui-icon,
+  .ghx-classification-header .ghx-actions .ghx-add-button,
+  .ghx-classification-header .ghx-actions .ghx-close {
+    color: @subtext0 !important;
+  }
+
+  .ghx-classification-item .ghx-name .epic-more-button:hover {
+    color: @subtext1 !important;
+  }
+
+  .ghx-sprint-meta .time {
+    color: @subtext1;
+  }
+
   .iic-widget,
   .iic-widget__form {
     background-color: @base !important;
@@ -927,23 +968,29 @@
   }
 
   .jira-dialog {
-    background-color: @base !important;
+    background: @base;
+    border-color: @crust;
   }
 
   .jira-dialog .buttons-container {
-    background: @base !important;
-  }
+    background: @base;
+    border-color: @crust;
 
-  .jira-dialog .buttons-container .hint-container {
-    color: @surface2 !important;
+    & .hint-container {
+      color: @surface2;
+    }
   }
 
   .jira-dialog .jira-dialog-content {
-    background: @base !important;
+    background: @base;
   }
 
   .jira-dialog .jira-dialog-heading {
-    background: @base !important;
+    background: @base;
+    border-color: @crust;
+    & h2 {
+      color: @text;
+    }
   }
 
   .jira-multi-select > .icon.drop-menu {
@@ -1080,7 +1127,6 @@
   }
 
   button.aui-button {
-    background-color: @surface0 !important;
     color: @text !important;
   }
 
@@ -1148,6 +1194,7 @@
   h4,
   h5 {
     color: @text;
+    font-family: Poppins, Inter, sans-serif;
   }
 
   .ghx-pool-column,
@@ -1173,9 +1220,23 @@
     font-weight: 600;
   }
 
+  .subnavigator-title {
+    font-weight: 600;
+  }
+
+  table.aui > thead {
+    border-color: @crust;
+  }
+
   table.aui > tbody > tr > th {
     background-color: @surface0 !important;
     color: @text !important;
+  }
+  table.aui:not(.aui-table-list) > tbody > tr > td,
+  table.aui:not(.aui-table-list) > tbody > tr > th,
+  table.aui:not(.aui-table-list) > tfoot > tr > td,
+  table.aui:not(.aui-table-list) > tfoot > tr > th {
+    border-color: @crust;
   }
 
   .aui-list a.active,
@@ -1360,17 +1421,21 @@
   #announcement-banner {
     background-color: @mantle !important;
     border-bottom: 1px solid @crust !important;
-  }
+    font-family: Poppins, inter, sans-serif;
 
-  #announcement-banner > div {
-    color: @subtext1 !important;
-    border-color: @crust !important;
-    background-color: @surface0 !important;
+    & > div {
+      color: @subtext1 !important;
+      border-color: @crust !important;
+      background-color: @surface0 !important;
+    }
   }
-
   .ghx-label-1 {
     background-color: @text !important;
     color: @base !important;
+  }
+
+  #jira .ghx-label-1-border {
+    border-right: 4px solid @text !important;
   }
 
   .ghx-label-2 {
@@ -1378,9 +1443,17 @@
     color: @base !important;
   }
 
+  #jira .ghx-label-2-border {
+    border-right: 4px solid @yellow !important;
+  }
+
   .ghx-label-3 {
     background-color: @rosewater !important;
     color: @base !important;
+  }
+
+  #jira .ghx-label-3-border {
+    border-right: 4px solid @rosewater !important;
   }
 
   .ghx-label-4 {
@@ -1388,9 +1461,17 @@
     color: @base !important;
   }
 
+  #jira .ghx-label-4-border {
+    border-right: 4px solid @blue !important;
+  }
+
   .ghx-label-5 {
     background-color: @sky !important;
     color: @base !important;
+  }
+
+  #jira .ghx-label-5-border {
+    border-right: 4px solid @sky !important;
   }
 
   .ghx-label-6 {
@@ -1398,9 +1479,17 @@
     color: @base !important;
   }
 
+  #jira .ghx-label-6-border {
+    border-right: 4px solid @teal !important;
+  }
+
   .ghx-label-7 {
     background-color: @peach !important;
     color: @base !important;
+  }
+
+  #jira .ghx-label-7-border {
+    border-right: 4px solid @peach !important;
   }
 
   .ghx-label-8 {
@@ -1408,9 +1497,17 @@
     color: @base !important;
   }
 
+  #jira .ghx-label-8-border {
+    border-right: 4px solid @mauve !important;
+  }
+
   .ghx-label-9 {
     background-color: @pink !important;
     color: @base !important;
+  }
+
+  #jira .ghx-label-9-border {
+    border-right: 4px solid @pink !important;
   }
 
   .ghx-label-10 {
@@ -1418,9 +1515,17 @@
     color: @base !important;
   }
 
+  #jira .ghx-label-10-border {
+    border-right: 4px solid @lavender !important;
+  }
+
   .ghx-label-11 {
     background-color: @sapphire !important;
     color: @base !important;
+  }
+
+  #jira .ghx-label-11-border {
+    border-right: 4px solid @sapphire !important;
   }
 
   .ghx-label-12 {
@@ -1428,14 +1533,26 @@
     color: @crust !important;
   }
 
+  #jira .ghx-label-12-border {
+    border-right: 4px solid @overlay2 !important;
+  }
+
   .ghx-label-13 {
     background-color: @green !important;
     color: @base !important;
   }
 
+  #jira .ghx-label-13-border {
+    border-right: 4px solid @green !important;
+  }
+
   .ghx-label-14 {
     background-color: @red !important;
     color: @base !important;
+  }
+
+  #jira .ghx-label-14-border {
+    border-right: 4px solid @red !important;
   }
 
   form#issue-filter .check-list-item.active,
@@ -1515,7 +1632,7 @@
   }
 
   .ghx-issue .ghx-key-link {
-    color: @overlay0;
+    color: @accent-color;
   }
 
   .quicksearch-dropdown {
@@ -1712,5 +1829,57 @@
 
   .ghx-description {
     color: @overlay2;
+  }
+
+  #content-wrapper {
+    background-color: @base;
+  }
+
+  #kb-results {
+    background-color: @base;
+  }
+
+  .cv-custom-help-center-branding .cp-header .cv-header-nav-button {
+    background: @surface0;
+    color: @red;
+
+    &:hover {
+      background: @surface1;
+    }
+  }
+
+  .cp-header-secondary .cv-header-nav-button {
+    border-color: @crust;
+  }
+
+  .cv-custom-help-center-branding .cp-header .cp-badge,
+  .cv-custom-help-center-branding .cv-portal-announcement {
+    background-image: unset !important;
+    background-color: @red;
+    color: @crust;
+  }
+
+  .iFMuiI:hover {
+    background-color: @surface0;
+  }
+
+  .cp-header-secondary .cp-user-profile .cp-avatar {
+    background-color: @crust;
+    border: 1px solid @crust;
+  }
+
+  #cp-request-share-root > div > div > div {
+    background-color: @base;
+  }
+
+  .ghx-detail-view.gh-editable-detail-view
+    .ghx-detail-issue
+    .module.toggle-wrap
+    .toggle-title {
+    color: @subtext1;
+  }
+
+  .aui-button > svg > g > path {
+    fill: @subtext1;
   }
 }
