@@ -12,7 +12,7 @@ request.
 
 It is important to note that there are **two types of PRs** for this repository:
 
-1. **New Userstyles:** Please see [userstyle-creation.md](userstyle-creation.md)
+1. **New Userstyles:** Please see [userstyle-creation.md](userstyle-creation.md).
 2. **Other improvements:** These should follow the recommendations below, to help
    improve the chances of a merged PR.
 
@@ -24,6 +24,7 @@ It is important to note that there are **two types of PRs** for this repository:
 - Consider using
   [conventionalcommits.org](https://www.conventionalcommits.org/en/v1.0.0/)'s
   rules for creating explicit and meaningful commit messages.
+- Update the version in the `==UserStyle==` header of the css-file. This is to enable version control of the style.
 - If it's your first time contributing to a project then you should look to the
   popular
   [first-contributions](https://github.com/firstcontributions/first-contributions)

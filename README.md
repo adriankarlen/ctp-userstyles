@@ -42,7 +42,7 @@ giving it a unique and appealing aesthetic in line with Catppuccin's color palet
 
 To install these userstyles:
 
-1. Install [Stylus](https://github.com/openstyles/stylus)
+1. Install [Stylus](https://github.com/openstyles/stylus).
    - [Firefox](https://addons.mozilla.org/en-GB/firefox/addon/styl-us/)/[Chrome](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne)
      extension.
 2. Enable CSP Patching from `Stylus Settings` > `Advanced`.
@@ -55,10 +55,10 @@ To install these userstyles:
 
 ## 👐 Contributing
 
-> **Note** <br>
-> If you would like to submit a userstyle or learn how to port Catppuccin to a website, please refer to the [userstyle-creation.md](docs/userstyle-creation.md).
+> [!NOTE]
+> If you would like to submit a userstyle or learn how to port Catppuccin to a website, please refer to [userstyle-creation.md](docs/userstyle-creation.md).
 
-See [CONTRIBUTING.md](docs/CONTRIBUTING.md)
+See [CONTRIBUTING.md](docs/CONTRIBUTING.md).
 
 &nbsp;
 
@@ -69,6 +69,7 @@ See [CONTRIBUTING.md](docs/CONTRIBUTING.md)
 <details open>
 <summary>💭 Development tools</summary>
 
+- [Hoppscotch](styles/hoppscotch)
 - [paste.rs](styles/paste.rs)
 - [Vercel](styles/vercel)
 
@@ -80,6 +81,7 @@ See [CONTRIBUTING.md](docs/CONTRIBUTING.md)
 - [Ecosia](styles/ecosia)
 - [NixOS Search](styles/nixos-search)
 - [SearXNG](styles/searxng)
+- [Startpage](styles/startpage)
 
 </details>
 <details open>
@@ -92,17 +94,21 @@ See [CONTRIBUTING.md](docs/CONTRIBUTING.md)
 <details open>
 <summary>🗂️ Productivity</summary>
 
+- [boringproxy](styles/boringproxy)
 - [Canvas LMS](styles/canvas-lms)
 - [ChatGPT](styles/chatgpt)
 - [Codeberg](styles/codeberg)
 - [Crowdin](styles/crowdin)
 - [DeepL](styles/deepl)
+- [Formative](styles/formative)
 - [GitHub](styles/github)
 - [homepage](styles/homepage)
 - [ichi.moe](styles/ichi.moe)
 - [InvokeAI](styles/invokeai)
 - [Proton](styles/proton)
 - [Quizlet](styles/quizlet)
+- [Stylus](styles/stylus)
+- [Syncthing](styles/syncthing)
 - [Tutanota](styles/tutanota)
 - [WikiWand](styles/wikiwand)
 
@@ -112,14 +118,11 @@ See [CONTRIBUTING.md](docs/CONTRIBUTING.md)
 
 - [Elk](styles/elk)
 - [Hacker News](styles/hacker-news)
-- [Invidious](styles/invidious)
 - [Libreddit](styles/libreddit)
 - [Mastodon](styles/mastodon)
 - [Nitter](styles/nitter)
 - [Reddit](styles/reddit)
 - [Substack](styles/substack)
-- [Twitch](styles/twitch)
-- [YouTube](styles/youtube)
 
 </details>
 <details open>
@@ -127,15 +130,20 @@ See [CONTRIBUTING.md](docs/CONTRIBUTING.md)
 
 - [AniList, AniChart](styles/anilist)
 - [ChatReplay](styles/chatreplay)
+- [Invidious](styles/invidious)
 - [Last.fm](styles/lastfm)
+- [Twitch](styles/twitch)
+- [YouTube](styles/youtube)
 
 </details>
 <details open>
 <summary>🎮 Games</summary>
 
 - [Advent Of Code](styles/advent-of-code)
+- [bStats](styles/bstats)
 - [Chess.com](styles/chess.com)
 - [Modrinth](styles/modrinth)
+- [Planet Minecraft](styles/planet-minecraft)
 
 </details>
 <!-- AUTOGEN:USERSTYLES END -->

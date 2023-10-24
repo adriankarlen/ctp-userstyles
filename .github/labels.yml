@@ -5,8 +5,14 @@
 - name: anilist
   description: AniList,AniChart
   color: "#8aadf4"
+- name: boringproxy
+  description: boringproxy
+  color: "#8aadf4"
 - name: brave-search
   description: Brave Search
+  color: "#8aadf4"
+- name: bstats
+  description: bStats
   color: "#8aadf4"
 - name: canvas-lms
   description: Canvas LMS
@@ -38,6 +44,9 @@
 - name: elk
   description: Elk
   color: "#8aadf4"
+- name: formative
+  description: Formative
+  color: "#8aadf4"
 - name: github
   description: GitHub
   color: "#8aadf4"
@@ -46,6 +55,9 @@
   color: "#8aadf4"
 - name: homepage
   description: homepage
+  color: "#8aadf4"
+- name: hoppscotch
+  description: Hoppscotch
   color: "#8aadf4"
 - name: ichi.moe
   description: ichi.moe
@@ -77,6 +89,9 @@
 - name: paste.rs
   description: paste.rs
   color: "#8aadf4"
+- name: planet-minecraft
+  description: Planet Minecraft
+  color: "#8aadf4"
 - name: proton
   description: Proton
   color: "#8aadf4"
@@ -89,8 +104,17 @@
 - name: searxng
   description: SearXNG
   color: "#8aadf4"
+- name: startpage
+  description: Startpage
+  color: "#8aadf4"
+- name: stylus
+  description: Stylus
+  color: "#8aadf4"
 - name: substack
   description: Substack
+  color: "#8aadf4"
+- name: syncthing
+  description: Syncthing
   color: "#8aadf4"
 - name: tutanota
   description: Tutanota

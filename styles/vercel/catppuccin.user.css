@@ -1,17 +1,23 @@
 /* ==UserStyle==
 @name           Vercel Catppuccin
 @namespace      github.com/catppuccin/userstyles/styles/vercel
-@version        0.0.4
+@homepageURL    https://github.com/catppuccin/userstyles/tree/main/styles/vercel
+@version        0.0.5
 @description    Soothing pastel theme for Vercel
 @author         Catppuccin
 @updateURL      https://github.com/catppuccin/userstyles/raw/main/styles/vercel/catppuccin.user.css
-@license 		    MIT
+@license        MIT
+
 @preprocessor   less
-@var select flavor "Flavor" ["latte:Latte", "frappe:Frappe", "macchiato:Macchiato", "mocha:Mocha*"]
+@var select lightFlavor "Light Flavor" ["latte:Latte*", "frappe:Frappe", "macchiato:Macchiato", "mocha:Mocha"]
+@var select darkFlavor "Dark Flavor" ["latte:Latte", "frappe:Frappe", "macchiato:Macchiato", "mocha:Mocha*"]
 ==/UserStyle== */
 @-moz-document domain("vercel.com") {
-  :root {
-    #catppuccin(@flavor);
+  :root.dark-theme {
+    #catppuccin(@darkFlavor);
+  }
+  :root.light-theme {
+    #catppuccin(@lightFlavor);
   }
 
   @catppuccin: {
@@ -187,6 +193,13 @@
 
     svg {
       --geist-stroke: var(--geist-background) !important;
+    }
+
+    .card-grid_card__S85BZ {
+      background: linear-gradient(180deg, @base 0%, @crust 100%);
+      &:hover {
+        background: linear-gradient(180deg, @base 0%, @mantle 100%);
+      }
     }
   }
 }
